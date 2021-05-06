@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Captura de gastos";
+}
+<style>
+    p.input-group-sm > .custom-select, .input-group-sm > .form-control, .input-group-sm > .input-group-append > .btn, .input-group-sm > .input-group-append > .input-group-text, .input-group-sm > .input-group-prepend > .btn, .input-group-sm > .input-group-prepend > .input-group-text {
+        line-height: 0.5;
+    }
+
+    .card-header, .card-footer {
+        height: 40px !important;
+    }
+
+    #printitemform, #btnModalPay {
+        margin-top: -5px;
+    }
+
+    .secret {
+        display: none;
+    }
+</style>
+<div class="custom_page_title"> Captura de gasto </div>
+<div class="divInvoiceGral">
+    @RenderPage("base/invoice_base.cshtml")
+</div>
+
+
+@RenderPage("base/invoice_modals.cshtml")
+<hr />
+<!-- Button actions  -->
+<div class="form-font-size-sm-a" style="display:flex; flex-direction:row-reverse;padding:0 100px 0 0">
+    <div>
+        <button type="button" class="btn btn-outline-success btn-sm save" onclick="saveDocument(this)"> <i class="far fa-save"></i> Guardar </button>
+    </div><div>
+        <a href="/invoice/invoiceapp" class="btn btn-success  btn-sm form-font-size-sm-a"><span class="glyphicon glyphicon-plus"></span> Nuevo </a>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/commonincomeinvoice")
+    @Scripts.Render("~/bundles/invoice")
+    @Scripts.Render("~/bundles/jsgrid")
+    @Scripts.Render("~/bundles/invoiceapp")
+
+}

@@ -1,0 +1,355 @@
+﻿@{
+    ViewBag.Title = "Usuarios";
+}
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #page-wrap {
+        margin: auto 0;
+    }
+
+    .treeview {
+        margin: 10px 0 0 20px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .treeview li {
+        background: url(http://jquery.bassistance.de/treeview/images/treeview-default-line.gif) 0 0 no-repeat;
+        padding: 2px 0 2px 16px;
+    }
+
+    .treeview > li:first-child > label {
+        /* style for the root element - IE8 supports :first-child
+    but not :last-child ..... */
+    }
+
+    .treeview li.last {
+        background-position: 0 -1766px;
+    }
+
+    .treeview li > input {
+        height: 16px;
+        width: 16px;
+        /* hide the inputs but keep them in the layout with events (use opacity) */
+        opacity: 0;
+        */ filter: alpha(opacity=0); /* internet explorer */
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+    }
+
+    .treeview li > label {
+        background: url(https://www.thecssninja.com/demo/css_custom-forms/gr_custom-inputs.png) 0 -1px no-repeat;
+        /* move left to cover the original checkbox area */
+        margin-left: -20px;
+        /* pad the text to make room for image */
+        padding-left: 20px;
+    }
+
+    /* Unchecked styles */
+
+    .treeview .custom-unchecked {
+        background-position: 0 -1px;
+    }
+
+        .treeview .custom-unchecked:hover {
+            background-position: 0 -21px;
+        }
+
+    /* Checked styles */
+
+    .treeview .custom-checked {
+        background-position: 0 -81px;
+    }
+
+        .treeview .custom-checked:hover {
+            background-position: 0 -101px;
+        }
+
+    /* Indeterminate styles */
+
+    .treeview .custom-indeterminate {
+        background-position: 0 -141px;
+    }
+
+        .treeview .custom-indeterminate:hover {
+            background-position: 0 -121px;
+        }
+
+    .lblPermissionsClass {
+        margin-bottom: 1px !important;
+        margin-top: 1px !important;
+    }
+</style>
+<br />
+<div class="custom_page_title"> Usuarios </div>
+<br />
+<div id="divSearchGral" class="" style="display:block">
+    <div id="btnBusqueda" class="form-inline">
+        <div class="row">
+            <div class="form-group">
+                <span class="fa fa-plus-circle " data-toggle="collapse" data-target="#formTargetDiv"><label class="control-label form-font-size-sm">&nbsp;Búsqueda avanzada</label></span>
+            </div>
+            <!-- <div class="form-group">
+                <button type="button" class="btn btn-warning btn-sm" id="btnPrintAdvanceSearchFondo" name="btnPrintAdvanceSearchFondo"><span class="fas fa-print"></span> Imprimir búsqueda </button>
+            </div> -->
+        </div>
+    </div>
+    <br>
+    <div id="ctrlBusqueda" class="form-font-size-sm">
+        <div class="form-left-spacing collapse" id="formTargetDiv">
+            <form id="frmAvanzadaUser" name="frmAvanzadaUser" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                <div class="row">
+                    <div class="form-group margin-right-md ">
+                        <label class="control-label" for="idUser">#:</label>
+                        <div class="form-group reqs">
+                            <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="idUser" name="idUser" placeholder="Ingrese id usuario..." style="width: 100px;">
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md ">
+                        <label class="control-label" for="userName">Nombre de  usuario:</label>
+                        <div class="form-group reqs">
+                            <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="userName" name="userName" placeholder="Ingrese nombre de usuario...">
+                        </div>
+                    </div>
+                    @*<div class="form-group margin-right-md ">
+                            <label class="control-label" for="hotel">Cuenta:</label>
+                            <div class="form-group reqs">
+                                <select class="PaymentMethod form-control input-height-xsm padding-no-padding" id="PaymentMethod" name="PaymentMethod" placeholder="Seleccione ..."> </select>
+                            </div>
+                        </div>
+                        <div class="form-group  margin-top-sm margin-right-md ">
+                            <label class="control-label" for="userfechaCreación">Fecha de creación:</label>
+                            <div class="form-group">
+                                <input class="form-control input-height-xsm padding-no-padding datetimeinput" id="userfechaCreación" name="userfechaCreación" readOnly>
+                            </div>
+                        </div>*@
+                    <div class="form-group margin-right-md">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success btn-sm" id="btnAdvanceSearch" name="btnAdvanceSearch"><span class="glyphicon glyphicon-search"></span> Buscar </button>
+                        </div>
+                        <!-- <div style="font-size:3em; color:Tomato"> -->
+                        <i class="resetform fas fa-eraser fa-2x " data-toggle="tooltip" title="Reiniciar búsqueda" value="frmAvanzadaUser"></i>
+
+                        <!-- </div> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margin-top-sm margin-right-md">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+
+    <div id="infoUsuarios" class="form-font-size-sm">
+        <table id="tblAllUsers" class="jsgrid-table">
+            <thead>
+                <tr class="jsgrid-header-row">
+                    <th class="jsgrid-header-cell jsgrid-header-sortable">Id Usuario</th>
+                    <th class="jsgrid-header-cell jsgrid-header-sortable">Nombre de Usuario</th>
+                    <th class="jsgrid-header-cell jsgrid-header-sortable">Nombre</th>
+                    <th class="jsgrid-header-cell jsgrid-header-sortable">Correo Electrónico</th>
+                    <th class="jsgrid-header-cell jsgrid-header-sortable">Perfil</th>
+                    <th class="jsgrid-header-cell jsgrid-header-sortable">Operaciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="pager">
+            <ul id="pagination" class="pagination-sm"></ul>
+        </div>
+    </div>
+</div>
+<!-- End SearchGral User-->
+<div id="divUsetoWork" class="" style="display:none">
+    <div id="infoUser" class="form-font-size-sm" style="display:block;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <input type="hidden" id="hdfUserid" />
+                <b> INFORMACIÓN DE USUARIO </b>&nbsp; | &nbsp; <b> <label id="nombreUsuario" name="nombreUsuario"></label> </b>
+                <span class="glyphicon glyphicon-eye-open " data-toggle="collapse" data-target="#formTargetDiv2" style="float:right"></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-4" style="background-color:transparent">
+                    <div class="form-left-spacing" id="formTargetDiv2">
+                        <form id="formUser" name="formUser" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                            <div class="row">
+                                <div>
+                                    <div class="row">
+                                        @*<div class="form-group margin-right-md" style="display:none;">
+                                                <label class="control-label" for="inputSmall">Usuario:</label>
+                                                <input class="form-control input-height-xsm padding-no-padding" id="idUser" name="idUser" type="text" value="@ViewBag.idUser">
+                                            </div>*@
+                                        <div class="form-group margin-top-sm margin-right-md ">
+                                            <label class="control-label" for="Users">Nombre del Usuario:</label>
+                                            <div class="form-group reqs">
+                                                <select class="form-control input-height-xsm padding-no-padding Users" id="idUser" name="idUser" placeholder="Seleccione ..."> </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group margin-top-sm margin-right-md ">
+                                            <label class="control-label" for="ProfileAccount">Perfil:</label>
+                                            <div class="form-group reqs">
+                                                <select class="form-control input-height-xsm padding-no-padding ProfileAccount" id="idProfileAccount" name="idProfileAccount" placeholder="Seleccione ..."> </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="btn pull-right form-font-size-sm-a">
+                                    <button type="button" class="btn btn-info btn-sm save" id="btnSaveUser"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div id="exTab1" class="" style="display:none;">
+        <ul class="nav nav-pills">
+            <li class="active">
+                <a href="#empresas" data-toggle="tab">EMPRESAS</a>
+            </li>
+            <li>
+                <a href="#cuentas" data-toggle="tab">CUENTAS BANCARIAS</a>
+            </li>
+            <li>
+                <a href="#permisos" data-toggle="tab">PERMISOS DE USUARIO</a>
+            </li>
+        </ul>
+
+        <div class="tab-content clearfix">
+            <div class="tab-pane active" id="empresas">
+                <div id="infoCompany" class="form-font-size-sm" style="display:block;color: black;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b>  </b>
+                            <span class="glyphicon glyphicon-eye-open " data-toggle="collapse" data-target="#formTargetDiv3" style="float:right"></span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-4" style="background-color:transparent">
+                                <div class="form-left-spacing" id="formTargetDiv3">
+                                    <form id="formCompanies" name="formCompanies" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                                        <div class="row">
+                                            <div id="conSelAll"></div>
+                                            <div id="Companies"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="btn pull-right form-font-size-sm-a">
+                                                <button type="button" class="btn btn-info btn-sm save" id="btnSaveCompany"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="cuentas">
+                <div id="infoAccount" class="form-font-size-sm" style="display:block;color: black;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b> </b>
+                            <span class="glyphicon glyphicon-eye-open " data-toggle="collapse" data-target="#formTargetDiv4" style="float:right"></span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12" style="background-color:transparent">
+                                <div class="form-left-spacing" id="formTargetDiv4">
+                                    <form id="formAccounts" name="formAccounts" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                                        <div class="row">
+                                            <div id="accSelAll"></div>
+                                            <div id="Accounts">
+                                                <div id="par" class="par col-xs-6"></div>
+                                                <div id="impar" class="impar col-xs-6"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="btn pull-right form-font-size-sm-a">
+                                                <button type="button" class="btn btn-info btn-sm save" id="btnSaveAccount"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="permisos">
+                <div id="infoPermissions" class="form-font-size-sm" style="display:block;color: black;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b> </b>
+                            <span class="glyphicon glyphicon-eye-open " data-toggle="collapse" data-target="#formTargetDiv5" style="float:right"></span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-6" style="background-color:transparent">
+                                <div class="form-left-spacing" id="formTargetDiv5">
+                                    <!--<form id="formPermissions" name="formPermissions" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                                        <div class="row">
+                                            <div id="perSelAll"></div>
+                                            <div id="Permissions">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="btn pull-right form-font-size-sm-a">
+                                                <button type="button" class="btn btn-info btn-sm save" id="btnSavePermissions"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                        -->
+                                    <form id="formPermissions" name="formPermissions" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                                        <div class="" id="page-wrap" name="page-wrap">
+                                        </div>
+                                        <div class="row">
+                                            <div class="btn pull-right form-font-size-sm-a">
+                                                <button type="button" class="btn btn-info btn-sm save" id="btnSavePermissions"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button actions  -->
+    <div id="btnActions" class="btn pull-right form-font-size-sm-a" style="display:block;">
+        <button class="btn btn-default btn_backUser btn-sm form-font-size-sm-a"><span class="glyphicon glyphicon-chevron-left"></span> Atras </button>
+        <!-- <button type="button" class="btn btn-success btn-sm reload" disabled="disabled" onclick="reload()"><span class="glyphicon glyphicon-refresh"></span> Recargar </button> -->
+        <button type="button" class="btn btn-info btn-sm save" id="btnSaveGeneral" onclick=""><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+        <!-- <button type="button" class="btn btn-success print slide_open" disabled="disabled"><span class="glyphicon glyphicon-print"></span> Print </button> -->
+        <!--<a href="/documents/documentsaccmain" class="btn btn-success  btn-sm form-font-size-sm-a"><span class="glyphicon glyphicon-plus"></span> Nuevo </a> -->
+    </div>
+    </div>
+
+    @section Scripts {
+        <script src="~/Scripts/twbsPagination/jquery.twbsPagination.min.js"></script>
+        <script src="~/Scripts/users/users.js"></script>
+        <script type="text/javascript" src="~/Scripts/excelexportjs.js"></script>
+        <script src="~/Scripts/utils/utils.js"></script>
+        <script src="~/Scripts/utils/datetime.js"></script>
+
+        <script>
+
+
+        </script>
+
+    }

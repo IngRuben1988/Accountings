@@ -1,0 +1,178 @@
+﻿<br />
+<div> @{ ViewBag.Title = "Reporte Corte de Cuentas Hoteles "; }</div>
+<br>
+<div class="custom_page_title">Reporte Corte de Cuentas Hoteles</div>
+<!-- Form 1 - Búsqueda avnzada +
+Grid -->
+<div class="form-font-size-sm">
+    <div class="form-left-spacing " id="">
+        <div class="">
+            <div>
+                <form id="frmAReportCashClosingHotel" name="frmAReportCashClosingHotel"
+                      role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                    <div class="">
+                        <div class="form-group col margin-right-md">
+                            <label class="col-form-label" for="dateReportStart">Fecha Inicio:</label>
+                            <div class="form-group">
+                                <input class="form-control input-height-xsm padding-no-padding dateReport"
+                                       id="dateReportStart" name="dateReportStart" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group col margin-right-md">
+                            <label class="col-form-label" for="dateReportEnd">Fecha Fin:</label>
+                            <div class="form-group">
+                                <input class="form-control input-height-xsm padding-no-padding dateReport"
+                                       id="dateReportEnd" name="dateReportEnd" readonly>
+                            </div>
+                        </div>@*@RenderPage("/common/_DependencyCompanyAccount.cshtml")*@
+
+                        <div class="form-group col margin-right-md ">
+                            <button class="btn btn-sm btn-secondary" id="btngenerateReport" name="btngenerateReport">Generar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <button class="btn btn-sm btn-success btn-sm fromRigth" id="btnExportCashClosing"
+                        name="btnExportCashClosing">
+                    Exportar Excel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<div id="divToExportExcel" class="" style="padding-left: 100px; padding-right: 100px;">
+    <table class="" id="tblfinancialStateAccountTimeLine" name="tblfinancialStateAccountTimeLine"
+           style="width:100%; border-color: #2c3e50; border-style: solid;">
+        <caption class="" style="background-color: #2c3e50; color: #ffffff;">
+            [&#xA0;&#xA0; Historial Detallado &#xA0;&#xA0;
+            <label id="_lblDate"></label>-
+            <label id="_lblBAccount"></label>&#xA0;&#xA0; ] &#xA0; [&#xA0; Saldo anterior: $ &#xA0;
+            <label id="_lblBalancebefore"></label>&#xA0;]
+        </caption>
+        <thead>
+            <tr>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; width:200px; text-align:center">Fecha</th>
+                <th></th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important;">Descripci&#xF3;n</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center">Monto</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center">Saldo</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 11px;"></tbody>
+    </table>
+</div>
+<!--
+   </div>
+    </div>
+</div>
+-->
+@section Scripts {
+
+<script src="~/Scripts/utils/datetime.js"></script>
+<script src="~/Scripts/utils/utils.js"></script>
+<!--<script src="~/Scripts/report/cashClosing.js"></script>
+ <script src="~/Scripts/tableToExcel.js"></script> -->
+<script>
+    var frm = $("#frmAReportCashClosingHotel");
+
+    $(document).ready(function () {
+
+        // loadPayMethods(); // MEthods pay select
+        // getCompaniesbyUser();
+        loadCompaniesSegmetHotel(null, "frmAReportCashClosingHotel", "Company");
+        dateTimePickerFrom(".dateReport", null, null);
+    });
+
+    $("#btnExportCashClosing").click(function () {
+        //  $("input[name='gridHtml']").val($("#divToExportExcel").html());
+        //   $("input[name='nameFile']").val('Historial Detallado');
+
+        tableToExcel('tblfinancialStateAccountTimeLine', 'Reporte_Corte_de_Caja');
+    });
+
+
+    $('#btngenerateReport').click(function (e) {
+        e.preventDefault();
+        $('.xls').remove();
+        if ($('#PaymentMethod').val() != 0) {
+            $("#_lblDate").text('');
+            $("#_lblBAccount").text('');
+            $("#_lblDate").append($("#dateReport").val());
+            $("#_lblBAccount").append($("#PaymentMethod option:selected").text());
+
+            if ($('.financialstateitem').length != 0) $('.financialstateitem').remove();
+            getReporData(frm);
+            // setTimeout(function () { generateButtonsExport(); }, 3000);
+        } else {
+            notifyMessageGral("Debe seleccionar una cuenta.", "warn", null, null);
+        }
+    });
+
+    function generateButtonsExport() {
+        $('.xls').remove();
+        $('#tblfinancialStateAccountTimeLine').tableExport({
+            bootstrap: true,
+            formats: ['xlsx'],
+            filename: $("#dateReport").val() + "-" + $("#PaymentMethod option:selected").text()
+        });
+        // });
+    };
+
+
+    function getReporData(frm) {
+
+        $.ajax({
+            method: "GET"
+            , url: "/reports/accountsClosing"
+            , data: frm.serialize()//{ year: year, month: month }
+            , datatype: 'json'
+        })
+            .done(function (data, textStatus, jqXHR) {
+                $('#_lblBalancebefore').html('');
+                $('#tblfinancialStateAccountTimeLine> tbody:last-child').append("<tr class='financialstateitem'> <td></td> <td></td> <td></td> <td style='text-align: right; padding-right: 15px;'>" + data.data.balanceBeforeString + "</td> </tr>");
+                createTr(data.data.financialstateitemlist);
+                $("#_lblBalancebefore").append(data.data.balanceBeforeString);
+                $('#tblfinancialStateAccountTimeLine> tbody:last-child').append("<tr class='financialstateitem'> <td></td> <td></td> <td> <p class='thicker'>Saldo Final </p> </td> <td style='text-align: right; padding-right: 15px;'> <p class='thicker'>" + data.data.balanceString + " </p> </td> </tr>");
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                notifyMessageGral(jqXHR.message, "warn", null, null);
+            });
+
+    }
+
+    function createTr(datas) {
+        var tr = "";
+        var endtr = "</tr>"
+        var resulttr = "";
+
+        $.each(datas, function (key, value) {
+
+            tr = "<tr class='financialstateitem' id='financialstateitem" + key + "'> ";
+            if (value.length != 0) {
+                resulttr = (tr + createTd(value) + endtr);
+                $('#tblfinancialStateAccountTimeLine> tbody:last-child').append(resulttr);
+            }
+        });
+
+    }
+
+    function createTd(data) {
+
+        var result = "<td style = 'text-align:center' > " + data.aplicationDateString + "</td> <td>" + data.description + " </td>  <td style='text-align: right; padding-right: 15px;'>" + data.appliedAmmountString + " </td>" + "< td style = 'text-align: right; padding-right: 15px;' > " + data.balanceString + " </td> ";
+        return result;
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+
+    }

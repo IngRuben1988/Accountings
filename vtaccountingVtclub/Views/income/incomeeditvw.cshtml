@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Edición de ingreso";
+}
+<style>
+    .tseeDocstooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+    }
+
+    .seeDocstooltip .seeDocstooltiptext {
+        visibility: hidden;
+        width: auto;
+        /* width: 120px; */
+        background-color: black;
+        color: #fff;
+        /* text-align: center; */
+        text-align: left;
+        border-radius: 6px;
+        padding: 5px 0;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .seeDocstooltip:hover .seeDocstooltiptext {
+        visibility: visible;
+    }
+</style>
+
+<div class="" style="">
+
+    <div class="custom_page_title"> Edición de ingreso </div>
+
+    <div>
+        @RenderPage("base/income_search_base.cshtml")
+    </div>
+
+
+    <div class="divIncomeGral" style="display:none">
+        @RenderPage("base/income_base.cshtml")
+        <hr />
+        <!-- Button actions  -->
+        <div class="form-font-size-sm-a" style="display:flex;flex-direction:row-reverse;padding:0 100px 0 0;">
+                @RenderPage("base/income_btn_guardar.cshtml")
+            <div>
+                <button class="btn btn-sm btn-outline-info form-font-size-sm-a" title="Atras" onclick="HideworkingIncome()"><i class="fas fa-arrow-left"></i> Atras </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@RenderPage("base/income_modals.cshtml")
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/commonincomeinvoice")
+    @Scripts.Render("~/bundles/jsgrid")
+    @Scripts.Render("~/bundles/income")
+    @Styles.Render("~/bundles/css")
+
+    <script>
+        $(document).ready(function () {
+            loadCompaniesbyUser(null, "searchForm", "company", null);
+            incomeRegisterEdit = true;
+            incomeitemEdit = true;
+            incomeDelete = false;
+            $('.modal-dialog').draggable({ handle: ".modal-header" });
+        });
+
+        setTimeout(function () {
+        }, 2000);
+        $(".forcenumericonly").ForceNumericOnly();
+
+
+    </script>
+}

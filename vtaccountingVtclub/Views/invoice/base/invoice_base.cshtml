@@ -1,0 +1,213 @@
+﻿<!-- FORM-->
+<div class="container-fluid" style="font-size: 12px !important;">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <center>
+                    <ul class="nav nav-tabs align-content-center" id="myTab" role="tablist">
+                        <li class="nav-item"><a id="home-tab" data-toggle="tab" href="#home" role="tab" class="nav-link active" aria-controls="home" aria-selected="true"><b>INFORMACIÓN DE GASTOS </b> | <b> <label id="invoiceIdentifier" name="invoiceIdentifier" class="invoiceIdentifier"></label> </b></a></li>
+                        <li class="nav-item"><a id="menu1-tab" data-toggle="tab" href="#menu1" role="tab" class="nav-link href_attachments" aria-controls="menu1" aria-selected="false">ARCHIVOS ADJUNTOS</a></li>
+                        <li class="nav-item"><a id="menu2-tab" data-toggle="tab" href="#menu2" role="tab" class="nav-link href_logging" aria-controls="menu2" aria-selected="false">SEGUIMIENTOS</a></li>
+                    </ul>
+                </center>
+                <div class="tab-content" id="myTabContent">
+                    <div id="home" class="col-md-12 tab-pane fade show active form-font-size-sm" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="col-md-12 form-left-spacing" id="" style="padding-top:1em !important; padding-left: 2em !important;">
+                            <form id="invoiceForm" name="invoiceForm" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                                <!-- 1 -->
+                                <div class="">
+                                    <div class="form-group margin-right-md" style="display:none;">
+                                        <label class="control-label" for="inputSmall">Invoice:</label>
+                                        <input class="form-control input-height-xsm padding-no-padding" id="Invoice" name="Invoice" type="text" value="@ViewBag.Invoice">
+                                    </div>
+                                    <div class="form-group margin-right-md ">
+                                        <label class="control-label" for="Segment">Segmento:</label>
+                                        <div class="form-group reqs">
+                                            <select class="form-control input-height-xsm padding-no-padding Segment" id="Segment" name="Segment" placeholder="Seleccione ..."> </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="form-group margin-top-sm margin-right-md ">
+                                        <label class="control-label" for="Company">Unidad de negocio:</label>
+                                        <div class="form-group reqs">
+                                            <select class="form-control input-height-xsm padding-no-padding Company" id="Company" name="Company" placeholder="Seleccione ..."> </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <!-- 1.2 -->
+                                    <div class="form-group margin-top-sm margin-right-m">
+                                        <div class="form-group">
+                                            <label class="control-label label-margin-right-sm" for="applicationdateString0">
+                                                Fecha de aplicación:<br />
+                                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimeinput applicationdatestring" data-target="#datetimepicker1" id="ApplicationDateString0" name="ApplicationDateString0" maxlength="10" />
+                                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker" data-link-format="dd/mm/yyyy">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group margin-top-sm margin-right-md" style="display:none">
+                                        <label class="control-label" for="Cost">Costo:</label>
+                                        <b>$</b>
+                                        <div class="form-group">
+                                            <input class="form-control input-height-xsm padding-no-padding" id="Cost" name="Cost" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group margin-top-sm margin-right-md" style="display:none">
+                                        <label class="control-label" for="Cost">pagos:</label>
+                                        <b>$</b>
+                                        <div class="form-group">
+                                            <input class="form-control input-height-xsm padding-no-padding" id="Costpay" name="CostPay" type="text" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="form-group margin-top-sm margin-right-md" style="">
+                                        <label class="control-label" for="Currency">Moneda:</label>
+                                        <div class="form-group reqs">
+                                            <select class="form-control input-height-xsm padding-no-padding Currency" id="Currency" name="Currency" readOnly></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="menu1" class="col-md-12 tab-pane fade form-font-size-sm" role="tabpanel" aria-labelledby="menu1-tab">
+                        @RenderPage("invoice_attachment.cshtml")
+                    </div>
+                    <div id="menu2" class="col-md-12 tab-pane fade form-font-size-sm" role="tabpanel" aria-labelledby="menu2-tab">
+                        @RenderPage("invoice_comment.cshtml")
+                    </div>
+                    <!-- FORM 2 -->
+                    <div class="col-md-12" style="padding-top:3em !important">
+                        <div class="card">
+                            <!-- card header -->
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col col-11">
+                                        <label class=""><b>CONCEPTOS DE GASTOS</b></label>
+                                    </div>
+
+                                    <div class="col col-1">
+                                        <center>
+                                            <i class="far fa-eye" data-toggle="collapse" data-target="#formTargetIncome"></i>
+                                        </center>
+                                    </div>
+                                </div>
+                                @*<span class="glyphicon glyphicon-eye-open " data-toggle="collapse" data-target="#formTargetDiv2" style="float:right"></span>*@
+                            </div>
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div id="formTargetDiv2" class="collapse show">
+                                    <div class="row">
+                                        <div class="col-md-12 " id="colmd81">
+                                            <div>
+                                                <div id="jsGridInvoiceItems">
+                                                    <table id="jsGridInvoiceItems" name="jsGridInvoiceItems" class="jsGridInvoiceItems table table-hover table-sm table-condensed table-responsive-sm ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No.</th>
+                                                                <th>Categor&iacute;a</th>
+                                                                <th>Tipo</th>
+                                                                <th>Subtotal</th>
+                                                                <th>Descripci&oacute;n</th>
+                                                                <th colspan="2" style="text-align: center;"><i class="fas fa-cog"></i></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!--Target DIV  -->
+                            </div>
+                            <!-- card footer -->
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col col-10">
+                                        <b>
+                                            <label>Total : $</label> &nbsp;
+                                            <label id="toTalCost">0.00</label>
+                                        </b>
+                                    </div>
+                                    <div class="col col-2">
+                                        <center>
+                                            <button type="button" class="btn btn-info btn-sm" id="printitemform" data-toggle="modal" data-target="#myModal"> Nuevo Gasto</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FORM 3 -->
+                    <div class="col-md-12" style="padding-top:3em !important">
+                        <div class="card">
+                            <!-- card header -->
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col col-11">
+                                        <label class=""><b>MOVIMIENTOS DE GASTOS</b></label>
+                                    </div>
+                                    <div class="col col-1">
+                                        <center>
+                                            <i class="far fa-eye" data-toggle="collapse" data-target="#formTargetMovementsIncome"></i>
+                                        </center>
+                                    </div>
+                                </div>
+                                @*<span class="glyphicon glyphicon-eye-open " data-toggle="collapse" data-target="#formTargetDiv3" style="float:right"></span>*@
+                            </div>
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div id="formTargetDiv3" class="collapse show">
+                                    <div class="row">
+                                        <div class="col-md-12 " id="colmd82">
+                                            <div class="form-font-size-sm">
+                                                <div id="jsGridInvoicePayment">
+                                                    <table id="jsGridInvoicePayment" name="jsGridInvoicePayment" class="jsGridInvoicePayment table table-hover table-sm table-condensed table-responsive-sm ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No.</th>
+                                                                <th>Categor&iacute;a</th>
+                                                                <th>Tipo</th>
+                                                                <th>Subtotal</th>
+                                                                <th>Descripci&oacute;n</th>
+                                                                <th colspan="2" style="text-align: center;"><i class="fas fa-cog"></i></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!--Target DIV  -->
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col col-10">
+                                        <b>
+                                            <label>Total a pagar: $</label> &nbsp;
+                                            <label id="totalPay" class="totalPay">0.00</label>
+                                        </b>
+                                    </div>
+                                    <div class="col col-2">
+                                        <center>
+                                            <button id="btnModalPay" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">Nuevo Movimiento</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿<div class="card">
+    <div class="card-header">
+        <b> Seguimiento  </b>
+    </div>
+    <div class="card-body">
+        <div class="form-left-spacing">
+            <div class="row">
+                <div>
+                    <button data-toggle="collapse" data-target="#popuptblComments" class="custom-blank_button"> <i type="button" class="fa fa-list-alt" style=""></i> Ver seguimento</button> | <button data-toggle="collapse" data-target="#popupFrmComments" class="custom-blank_button"> <i type="button" class="fa fa-comment" style=""></i> Capturar</button>
+                </div>
+            </div>
+        </div>
+        <div id="popup2" class="">
+            <div id="popupFrmComments" class="collapse form-inline">
+                <div class="margin-left-md">
+                    <form id="frmComments" name="upload" class="">
+                        <div class="form-group">
+                            <textarea class="form-control input-max-height-xsm input-max-width-sm padding-no-padding" id="commentDescription" name="commentDescription"></textarea>
+                            <button class="btn btn-sm btn-secondary" disabled="disabled" title="Guardar" id="btnSaveComments" name="btnSaveComments"> Guardar</button>
+                        </div>
+                    </form>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="popup" class="">
+            <div id="popuptblComments" class="collapse div-max-height-sm-table">
+                <table class="table" id="tblComments">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Comentario</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 10px;"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

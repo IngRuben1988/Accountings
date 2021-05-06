@@ -1,0 +1,242 @@
+﻿@{
+    ViewBag.Title = "Conciliación movimientos bancarios";
+}
+
+<div class="divSearchStatementsGral" style="padding-top:4em;">
+    <div class="container-fluid form-font-size-sm">
+        <div class="row toMessages ">
+            <div class="col-md-12 row">
+                <!-- <fieldset style="" class="fieldset-custom">
+                <legend align="left" style="" class="legend-custom">Conciliaciones</legend> -->
+                <div class="col-md-8">
+                    <form role="form" class="form-inline bs-component" id="frmSearchBAReconciliations" name="frmSearchBAReconciliations">
+                        <div class="row">
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label class="control-label" for="ammountStart">Monto Inicial:</label>
+                                <b>$</b>
+                                <div class="form-group">
+                                    <input class="form-control input-height-xsm padding-no-padding ammount" id="ammountStart" name="ammountStart" type="text" title="Aplica para venta totales y depósito">
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label class="control-label" for="ammountEnd">Monto Final:</label>
+                                <b>$</b>
+                                <div class="form-group">
+                                    <input class="form-control input-height-xsm padding-no-padding ammount" id="ammountEnd" name="ammountEnd" type="text" title="Aplica para venta totales y depósito">
+                                </div>
+                            </div>
+                            <div class="form-group  margin-top-sm margin-right-md ">
+                                <label class="control-label" for="dateReportStart">Fecha de inicio:</label>
+                                <div class="input-group date" id="appdate1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input datetimeinput dateReport" data-target="#appdate1" id="dateReportStart" name="dateReportStart" />
+                                    <div class="input-group-append" data-target="#appdate1" data-toggle="datetimepicker" data-link-format="dd/mm/yyyy">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group  margin-top-sm margin-right-md ">
+                                <label class="control-label" for="dateReportEnd">Fecha fin:</label>
+                                <div class="input-group date" id="appdate2" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input datetimeinput dateReport" data-target="#appdate2" id="dateReportEnd" name="dateReportEnd" />
+                                    <div class="input-group-append" data-target="#appdate2" data-toggle="datetimepicker" data-link-format="dd/mm/yyyy">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="externalgroup">Tipo:</label>
+                                <div class="form-group ">
+                                    <select class="form-control input-height-xsm padding-no-padding typeSourceData" id="typeSourceData" name="typeSourceData" placeholder="Seleccione ...">
+                                        <!-- <option value="0"> Seleccione ...</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="description">Descripción:</label>
+                                <div class="form-group ">
+                                    <input type="text" class="form-control input-height-xsm padding-no-padding description" id="description" name="description" />
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="externalgroup">Rubro:</label>
+                                <div class="form-group ">
+                                    <select class="form-control input-height-xsm padding-no-padding externalgroup" id="externalgroup" name="externalgroup" placeholder="Seleccione ...">
+                                        <!-- <option value="0"> Seleccione ...</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="Company">Unidad de negocio:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm padding-no-padding Company" id="Company" name="Company" tochild="PaymentMethod" placeholder="Seleccione ..."> </select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="PaymentMethod">Cuenta:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm padding-no-padding PaymentMethod" id="PaymentMethod" name="PaymentMethod" placeholder="Seleccione ..."> </select>
+                                </div>
+                            </div>
+                            @*<div class="form-group margin-top-sm margin-right-md ">
+                                    <label class="control-label" for="Tpv">Terminal:</label>
+                                    <div class="form-group ">
+                                        <select class="form-control input-height-xsm padding-no-padding Tpv" id="Tpv" name="Tpv" placeholder="Seleccione ..."></select>
+                                    </div>
+                                </div>*@
+                            @*<div class="form-group margin-top-sm margin-right-md ">
+                                    <label class="control-label" for="hotel">Partner:</label>
+                                    <div class="form-group ">
+                                        <select class="form-control input-height-xsm padding-no-padding hotel" id="hotel" name="hotel" placeholder="Seleccione ..."></select>
+                                    </div>
+                                </div>*@
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="status">Estatus conciliación:</label>
+                                <div class="form-group ">
+                                    <select class="form-control input-height-xsm padding-no-padding hotel" id="status" name="status" placeholder="Seleccione ..."></select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-outline-success btn-sm  btnGenerateSearchBankStatements">
+                        <i class="fas fa-search"></i>
+                        Buscar
+                    </button>
+                    <button type="button" class="btn btn-success btn-sm  btnCreateExcel">
+                        <i class="fas fa-file-excel fa-lg"></i>
+                        Exportar Excel
+                    </button>
+                    @*<i class="resetform fas fa-eraser fa-2x " data-toggle="tooltip" title="Reiniciar búsqueda" value="frmSearchBAReconciliations"></i>
+        <button type="button" value="frmSearchBAReconciliations"><i class="resetform fas fa-eraser fa-2x " data-toggle="tooltip" title="Reiniciar búsqueda" value=""></i></button>*@
+                    <button type="button" class="resetform btn btn-outline-dark btn-sm margin-top-sm" id="btnAdvanceSearch" name="btnAdvanceSearch" title="Reiniciar búsqueda" data-toggle="tooltip" value="frmSearchBAReconciliations"> <i class="fas fa-redo-alt"></i> Reiniciar búsqueda  </button>
+
+                </div>
+                <!-- </fieldset>
+                <fieldset style="" class="fieldset-custom">
+                    <legend align="left" style="" class="legend-custom">Cargar Excel</legend> -->
+                @*<div class="col-md-2">
+                        <button type="button" class="btn btn-info btn-sm  btnPrevExcel">
+                            <i class="fa fas fa-file-upload fa-lg"></i>
+                            Importar ScotiaPos
+                        </button>
+                    </div>*@
+                <!-- </fieldset> -->
+            </div>
+        </div>
+        <div class="row divSearchSCTP" style="padding-top: 3em;">
+            <div class="row">
+                <div class="row col-md-12 margin-left-sm">
+                    <div class="col-md-3">
+                        <fieldset style="" class="fieldset-custom">
+                            <legend align="left" style="" class="legend-custom margin-top-sm">Método de conciliación</legend>
+                            <table class="table_trafficlights">
+                                <tr>
+                                    <td> <i class="fas fa-exclamation-triangle"></i> Sin conciliar</td>
+                                    <td> <i class="fas fa-hands-helping"></i> Manual</td>
+                                    <td> <i class="fas fa-cogs"></i> Sistema</td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-3">
+                        <fieldset style="" class="fieldset-custom">
+                            <legend align="left" style="" class="legend-custom margin-top-sm">Estado de conciliación</legend>
+                            <table class="table_trafficlights">
+                                <tr>
+                                    <td class="bank_statements_success_td"> <span><i class="fa fa-circle"></i></span> Completo</td>
+                                    <td class="bank_statements_danger_td"> <span><i class="fa fa-circle"></i></span> Parcial</td>
+                                    <td class="bank_statements_error_td"> <span><i class="fa fa-circle"></i></span> Error</td>
+                                    <td> <i class="fas fa-circle"></i> Sin conciliar</td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-md-12 margin-top-sm ">
+                    <div class="row">
+                        <div>
+                            <div class="col-md-11">
+
+                            </div>
+                            <div class="col-md-1">
+                                <!-- <button class="btn btn-default btn-sm hide btn_delete_sctp"> Borrar</button> -->
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-condensed table-hover table-striped table-bordered" id="tblSearchSCTP" name="tblSearchSCTP">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 1em !important;"> <input type="checkbox" onclick="chkCheckUncheckStatement(this)" class="chkstatParent" id="chkstatParent" childs="_unchkstatChild"> </th>
+                                        <th style="width: 3em !important;text-align: center;">#</th>
+                                        <th style="width: 4em !important;text-align: center;">Fecha depósito</th>
+                                        <th style="width: 4em !important;text-align: center;">Moneda</th>
+                                        <th style="width: 4em !important;text-align: center;">Cuenta cheques</th>
+                                        <th style="width: 10em !important;text-align: center;">Comisión</th>
+                                        <th style="width: 10em !important;text-align: center;">Abono</th>
+                                        <th style="width: 10em !important;text-align: center;">Cargo</th>
+                                        <th style="width: 10em !important;text-align: center;">Detalles de cargos/abonos</th>
+                                        <th style="width: 10em !important;text-align: center;">Monto a conciliar</th>
+                                        <th style="width: 2em !important;text-align: center !important;" colspan="3"> <input type="button" class="tablegrid-button tablegrid-delete-button hide" style="font-size: 13px;" data-toggle="tooltip" data-original-title="Eliminar" onclick='financialStateDeleteArray()' /></th>
+                                        <!-- <th></th> -->
+                                        <!-- <th></th> -->
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div class="row divSearchDetailSCTP " style="padding-top: 3em; display:none;">
+            <div style="float: right;">
+                <i class='fas fa-arrow-left' style="font-size:20px !important;" onclick="showsearchSCTKPGeneral(this)"></i> <label>Atras</label>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6" style="padding-top: 3em;">
+                        <div>
+                            <label class="" style="font-size: 14px !important;">Búsqueda para conciliación</label>
+                        </div>
+                        <div>
+                            <h5> O r i g e n </h5>
+                            <div class="divSCTKPDetailsbyForm" id="JsGridSCTKPDetailsbyForm" name="JsGridSCTKPDetailsbyForm"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="padding-top: 3em;">
+                        <div class="toAddBankStatements">
+                            <div class="searchSearchDetailSCTPInfo">
+                                <label class="lblSearchDetailSCTPInfo" style="font-size: 14px !important;"></label>
+                            </div>
+                        </div>
+                        <div align="right" style="color:#229954 !important">
+                            <label id="SCTPSValue" name="SCTPSValue"></label>
+                        </div>
+                        <div align="right" style="color:#ffd800 !important">
+                            <label id="SCTPSValueRemaing" name="SCTPSValueRemaing"></label>
+                        </div>
+                        <div align="right" style="color:#2c3e50 !important">
+                            <label id="SCTPSValueSuggestion" name="SCTPSValueSuggestion"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jsgrid")
+    @Styles.Render("~/bundles/css")
+    <!-- <script type="text/javascript" src="~/Scripts/jsgrid-1.5.3/dist/jsgrid.min.js"></script> -->
+    <!-- <script type="text/javascript" src="~/Scripts/budget/budget.js"></script> -->
+    <!-- <script type="text/javascript" src="~/Scripts/excelexportjs.js"></script> -->
+    <script src="~/Scripts/account/commons/urls.js"></script>
+    <script src="~/Scripts/utils/utils.js"></script>
+    <script src="~/Scripts/utils/datetime/datetime.js"></script>
+    <script src="~/Scripts/bankstatement/baccountreconciliation.js"></script>
+
+}

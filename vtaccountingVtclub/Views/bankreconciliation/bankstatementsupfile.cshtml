@@ -1,0 +1,36 @@
+﻿<!-- FIle Up -->
+<div class="divAddExcelStatements" style="display:inherit; padding-top:4rem;">
+    <div style="float: right; display:none">
+        <i class='fas fa-arrow-left' style="font-size:20px !important;" onclick="HideUpExcel(this)"></i> <label>Atras</label>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <div>
+                <form id="upload" name="upload" class="form-inline">
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <fieldset style="" class="fieldset-custom margin-top-sm">
+                                        <legend align="left" style="" class="legend-custom">Seleccionar archivo</legend>
+                                        <input type="file" class="" name="FileUpload1" id="fileUpload" multiple="" accept=".xlsx" /><br />
+                                        <div class="divFilesSCTPS">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="margin-top-sm">
+                                    <input id="btnUploadFile" class="btn btn-default btn-sm btnUploadFile disabled" type="button" value="Cargar" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/account/commons/urls.js"></script>
+    <script src="~/Scripts/bankstatement/bankstatemenuploadfile.js"></script>
+    <script src="~/Scripts/utils/utils.js"></script>
+}

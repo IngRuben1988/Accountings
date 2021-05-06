@@ -1,0 +1,49 @@
+﻿<div class="card">
+    <div class="card-header">
+        <b> Archivos adjuntos </b>
+    </div>
+    <div class="card-body">
+        <div class="form-left-spacing">
+            <span type="button" class="glyphicon glyphicon-paperclip" data-toggle="collapse" data-target="#popupFile2" style=""> Ver Archivos</span> | <span type="button" class="glyphicon glyphicon-file" data-toggle="collapse" data-target="#popupFile1" style=""> Cargar archivo</span>
+        </div>
+        <div id="File1">
+            <div id="popupFile1" class="collapse">
+                <form id="upload" name="upload" class="form-inline">
+                    <div style="display:flex;">
+                        <div>
+                            <div class="form-group  margin-right-md">
+                                <label for="idAttach">Tipo comprobante:</label>
+                                <div class="input-group">
+                                    <select class="form-control input-height-xsm padding-no-padding idAttach" name="idAttach" id="idAttach" value="" placeholder="Select ..."></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:flex;">
+                                <input type="file" class="" name="FileUpload1" id="fileUpload" multiple="" /><br />
+                                <input id="btnUploadFile" class="btn btn-secondary btn-sm btnUploadFile" disabled="disabled" type="button" value="Cargar" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="File2" class="">
+            <div id="popupFile2" class="collapse div-max-height-sm-table">
+                <table class="table" id="keysAttach">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tipo</th>
+                            <th>Nombre</th>
+                            <th>Fecha carga</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 10px;"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

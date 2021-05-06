@@ -1,0 +1,86 @@
+﻿@model VTAworldpass.VTAServices.Services.accounts.model.LoginViewModel
+@{
+    //ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>VT Accounting</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/vtacss/user/login.css" rel="stylesheet" type="text/css" />
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    @*<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">*@
+    <!--===============================================================================================-->
+    @*<link rel="stylesheet" type="text/css" href="~/Content/themes/base/login.css">*@
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    @*<div class="container">
+
+        </div>
+        <div id="dropDownSelect1"></div>
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+
+
+    <div class="container">
+        <div class="card">
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "formprincipal validate-form" }))
+            {
+                @Html.AntiForgeryToken()
+                <span class="content-image">
+                    <div style="display:inline-flex">
+                        <img src="http://www.vt-software.com/sharedfiles/images/logoWORLDPASSForLogin.png" style="margin: 0px 3px;  width: 250px; height: 250px;" />
+                        <img src="~/Img/logoVTAccounting.png" style="width: 250px;" />
+                    </div>
+                </span>
+                <br />
+                <center><div class="title">Bienvenido a VTAccounting</div></center>
+                <div style="text-align: center; color: crimson; font-size: smaller; ">
+                    @Html.ValidationSummary()
+                </div>
+                <center>
+
+                    <div class="validate-input" data-validate="">
+                        <input class="UserName" type="text" name="UserName" placeholder="Nombre de usuario">
+                        <span class="focus-input100" data-placeholder="Username"></span>
+                    </div>
+
+                    <div class="validate-input" data-validate="Enter password">
+                        <span class="btn-show-pass">
+                            <i class="zmdi zmdi-eye"></i>
+                        </span>
+                        <input class="Password" type="password" name="Password" placeholder="Contraseña">
+                        <span class="focus-input100" data-placeholder="Password"></span>
+                    </div>
+
+                </center>
+
+
+                <center class="container">
+                    <br />
+                    <button class="btnlogin">
+                        Login
+                    </button>
+                </center>
+            }
+        </div>
+
+        <div class="lgfooter">
+            <hr />
+            <center>
+                VTAccounting by VTSoftware, S. A de C. V. @DateTime.Now.Year All rights reserved
+            </center>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

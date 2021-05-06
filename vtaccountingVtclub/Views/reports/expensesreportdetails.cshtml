@@ -1,0 +1,136 @@
+﻿<br />
+<div>
+    @{
+        ViewBag.Title = "Reporte de gastos mensual detallado";
+    }
+</div>
+<div class="custom_page_title"> Reporte de gastos mensual detallado </div>
+<!-- Form 1 - Búsqueda avnzada + Grid -->
+<div class="form-font-size-sm">
+    <div class="form-left-spacing row" id="">
+        <div class="col-lg-9">
+            <form id="frmAvanzadaReportExpenses" name="frmAvanzadaReportExpenses"
+                  role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                <div class="form-row">
+                    <div class="form-group margin-right-md margin-top-sm ">
+                        <label class="col-form-label" for="hotel">A&#xF1;o:</label>
+                        <div class="form-group reqs">
+                            <select class="year form-control input-height-xsm padding-no-padding"
+                                    id="year" name="year" placeholder="Seleccione ..."></select>
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md margin-top-sm ">
+                        <label class="col-form-label" for="hotel">Mes:</label>
+                        <div class="form-group reqs">
+                            <select class="form-control input-height-xsm padding-no-padding" id="month"
+                                    name="month" placeholder="Seleccione ...">
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                                <option value="0" selected="selected">Todos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md margin-top-sm ">
+                        <label class="col-form-label" for="segment">Segmento:</label>
+                        <div class="form-group reqs">
+                            <select class="form-control input-height-xsm padding-no-padding segment"
+                                    id="segment" name="segment" placeholder="Seleccione ..."></select>
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md margin-top-sm ">
+                        <label class="col-form-label" for="company">Unidad de negocio:</label>
+                        <div class="form-group reqs">
+                            <select class="form-control input-height-xsm padding-no-padding company"
+                                    id="company" name="company" placeholder="Seleccione ..."></select>
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md margin-top-sm ">
+                        <label class="col-form-label" for="typereport">Tipo de Reporte:</label>
+                        <div class="form-group reqs">
+                            <select class="form-control input-height-xsm padding-no-padding typereport"
+                                    id="typereport" name="typereport" placeholder="Seleccione ..."></select>
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md margin-top-sm ">
+                        <button class="btn btn-sm btn-outline-primary" id="btngenerateReport"
+                                name="btngenerateReport">
+                            Generar
+                        </button>
+                        <!-- <button type="button" class="btn btn-success btn-sm"
+                        id="btnExportExpenses"> <span class="fas fa-file-excel-o"></span> Export to Excel</button> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-1">
+            @using (Html.BeginForm("ExportToExcel", "reports", FormMethod.Post, new { @class = "fromRigth" }))
+            {
+                <input type="hidden" name="nameFile" value="">
+                <div style="display:none">
+                    <input type="text" name="gridHtml" id="gridHtml" value="">
+                </div>
+                <div class="form-group col margin-right-md margin-top-sm">
+                    <input type="submit" class="btn btn-outline-success btn-sm" id="btnExportMontly" name="btnExportMontly" value="Exportar Excel">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<br />
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="modal-content">
+            <h4 class="modal-title accountl4Name" id="" style="padding: 5px 5px 5px 5px;"> </h4>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div id="divExpensesCurrencies" class="divExpensesCurrencies" style="padding-left: 100px; padding-right: 100px;"></div>
+</div>
+<div id="dialog" title="Basic dialog" style="display:none; z-index: 1032 !important;"
+     class="myCustomdialogClass">
+    <div class="divExpensesCurrenciesToCopy" id="divExpensesCurrenciesToCopy"></div>
+</div>
+
+
+@section Scripts {
+
+    @*Scripts.Render("~/bundles/jquery")
+        Scripts.Render("~/bundles/jqueryval")
+        Scripts.Render("~/bundles/notify")
+        Scripts.Render("~/bundles/jqueryconfirm")
+        Scripts.Render("~/bundles/business")*@
+    @Scripts.Render("~/bundles/commonincomeinvoice")
+    @Scripts.Render("~/bundles/expensedetails")
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            loadYearsAvailable("frmAvanzadaReportExpenses", "year", null);
+            loadTypeReport('frmAvanzadaReportExpenses', 'typereport', null);
+            selectMonth();
+            loadDataNotDependency(PrepareRequestGetSegmentsbyCompanyUser(), null, 'frmAvanzadaReportExpenses', 'segment', true);
+            // loadSegmentsByCompanyUser(null, "frmAvanzadaReportExpenses", "Segment", true);
+            // loadFinancialReportType();
+
+        });
+
+    </script>
+}
+
+

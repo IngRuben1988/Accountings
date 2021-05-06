@@ -1,0 +1,173 @@
+﻿
+
+<div class="">
+    <div class="" style="width: 500px; height: 250px; padding: 10px;">
+        <!-- <div class="chartjs-size-monitor"> -->
+        <canvas id="myChart"></canvas>
+        <!-- <canvas id="myChart" class="chartjs-render-monitor" style="display: block; height: 570px; width: 1140px;" width="1425" height="712"></canvas> -->
+    </div>
+    <div class="" style="width: 500px; height: 250px; padding: 10px;">
+        <!-- <div class="chartjs-size-monitor"> -->
+        <canvas id="myChar2" ></canvas>
+        <!-- <canvas id="myChart" class="chartjs-render-monitor" style="display: block; height: 570px; width: 1140px;" width="1425" height="712"></canvas> -->
+    </div>
+</div>
+
+<hr />
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/chartJS")
+
+    <script>
+        $(document).ready(function () {
+            renderTable(); renderTable2()
+        });
+
+        function renderTable() {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
+                    datasets: [{
+                        label: 'Ingresos',
+                        data: [12, 19, 3, 11, 23, 12, 25],
+                        fill: false,
+                        showLine: true,
+                        backgroundColor: 'rgba(52, 152, 219, 1)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        pointBackgroundColor: 'rgba(34, 167, 240, 1)',
+                        pointBorderColor: 'rgba(34, 167, 240, 1)',
+                    }, {
+                        label: 'Egresos',
+                        data: [12, 15, 52, 12, 11, 69, 6],
+                        fill: false,
+                        showLine: true,
+                        backgroundColor: 'rgba(54, 215, 183, 1)',
+                        borderColor: 'rgba(54, 215, 183, 1)',
+                        pointBackgroundColor: 'rgba(41, 241, 195, 1)',
+                        pointBorderColor: 'rgba(41, 241, 195, 1)',
+                    }
+                        , {
+                        label: 'Utilidades',
+                        data: [2, 5, -1, 6, 3, 3, 6],
+                        fill: false,
+                        showLine: true,
+                        backgroundColor: 'rgba(231, 76, 60, 1)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        pointBackgroundColor: 'rgba(217, 30, 24, 1)',
+                        pointBorderColor: 'rgba(217, 30, 24, 1)',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Hotel La Misión'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Mes'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Miles pesos'
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        function renderTable2() {
+
+            var ctx2 = document.getElementById('myChar2').getContext('2d');
+            var myChart2 = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
+                    datasets: [{
+                        label: 'Ingresos',
+                        data: [25, 45, 96, 12, 3, 45, 10],
+                        fill: false,
+                        showLine: true,
+                        backgroundColor: 'rgba(52, 152, 219, 1)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        pointBackgroundColor: 'rgba(34, 167, 240, 1)',
+                        pointBorderColor: 'rgba(34, 167, 240, 1)',
+                    }, {
+                        label: 'Egresos',
+                        data: [12, 45, 36, 52, 41, 3, 21],
+                        fill: false,
+                        showLine: true,
+                        backgroundColor: 'rgba(54, 215, 183, 1)',
+                        borderColor: 'rgba(54, 215, 183, 1)',
+                        pointBackgroundColor: 'rgba(41, 241, 195, 1)',
+                        pointBorderColor: 'rgba(41, 241, 195, 1)',
+                    }
+                        , {
+                        label: 'Utilidades',
+                        data: [45, 36, 12, 47, 10, 12, 15],
+                        fill: false,
+                        showLine: true,
+                        borderDash: [5, 5],
+                        backgroundColor: 'rgba(231, 76, 60, 1)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        pointBackgroundColor: 'rgba(217, 30, 24, 1)',
+                        pointBorderColor: 'rgba(217, 30, 24, 1)',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Hotel Mala Vecindad'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Mes'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Miles pesos'
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+
+    </script>
+
+}

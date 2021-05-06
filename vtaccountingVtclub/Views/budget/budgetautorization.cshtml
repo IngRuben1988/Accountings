@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Límite de Fondos";
+}
+<br />
+<div class="custom_page_title"> Límite de fondos </div>
+
+<!--  -->
+<!-- Botones principales -->
+<div class="form-inline">
+    <div class="row">
+        <div class="form-group">
+            <button type="button" class="btn btn-info btn-sm" id="btnAddModalLimite" name="btnAddModalLimite" value="#modalLimitBudget">Delimitar fondo</button>
+        </div>
+        <div class="form-group margin-left-sm">
+            <button type="button" class="btn btn-success btn-sm" id="btnAdvanceSearchFondo" name="btnAdvanceSearchFondo"><span class="glyphicon glyphicon-search"></span> Buscar </button>
+        </div>
+        <div class="form-group">
+            <label data-toggle="collapse" data-target="#formTargetDiv" class="control-label form-font-size-sm">&nbsp; <span class="fa fa-plus-circle " title=""></span> Búsqueda avanzada</label>
+            @*<span class="fa fa-plus-circle " data-toggle="collapse" data-target="#formTargetDiv"><label class="control-label form-font-size-sm">&nbsp;Búsqueda avanzada</label></span>*@
+        </div>
+    </div>
+</div>
+<br />
+<!--  -->
+<!-- Form 1 - Búsqueda avnzada + Grid -->
+<div class="form-font-size-sm">
+    <div class="form-left-spacing collapse" id="formTargetDiv">
+        <form id="frmAvanzadaFondosLimit" name="frmAvanzadaFondosLimit" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+            <div class="row">
+                <div class="form-group margin-right-md ">
+                    <label class="control-label" for="id"> Id Fondo:</label>
+                    <div class="form-group reqs">
+                        <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="FondosMax" name="FondosMax" placeholder="Ingrese id..." style="width: 100px;">
+                    </div>
+                </div>
+                @RenderPage("../common/_DependencyCompanyAccount.cshtml")
+
+                <div class="form-group margin-right-md " style="display:none;">
+                    <label class="control-label" for="Currency">Tipo:</label>
+                    <div class="form-group reqs">
+                        <select class="Currency form-control input-height-xsm padding-no-padding" id="Currency" name="Currency" placeholder="Seleccione ..."> </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  margin-left-md">
+                    <div class="form-group margin-right-md">
+
+                        <!-- <div style="font-size:3em; color:Tomato"> -->
+                        @*<i class="resetform fas fa-eraser fa-2x " data-toggle="tooltip" title="Reiniciar búsqueda" value="frmAvanzadaFondosLimit"></i>*@
+                        <button type="button" class="resetform btn btn-outline-dark btn-sm margin-left-sm" id="btnAdvanceSearch" name="btnAdvanceSearch" data-toggle="tooltip" value="frmAvanzadaFondosLimit"> <i class="fas fa-redo-alt"></i> Reiniciar búsqueda  </button>
+
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<div class="form-font-size-xsm">
+    <div id="jsGridFondosLimit"></div>
+</div>
+
+
+<!-- Trigger the modal with a button -->
+<!-- Modal 1 - Fondos -->
+<div class="modal fade" id="modalLimitBudget" role="dialog">
+    <div class="modal-dialog modal-lg" id="">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Agregar Límite Fondo</h4>
+                <div>
+                    <div id="" class="form-inline total-label-md" style="display:none">
+                        <label>Resta por pagar: $</label> &nbsp;
+                        <label id="remaingPay"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" id="formItemInfo">
+                <div class="form-left-spacing form-font-size-sm" style="background-color: transparent;">
+                    <form id="frmLimitBudget" name="frmLimitBudget" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                        <div class="row">
+                            <div style="display:none">
+                                <input class="form-control input-height-xsm padding-no-padding" type="text" id="FondosMax" name="FondosMax">
+                            </div>
+                            @RenderPage("../common/_DependencyCompanyAccount.cshtml")
+                        </div>
+                        <div class="row">
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label class="control-label" for="chargedAmount">Monto:</label>
+                                <b> $</b>
+                                <div class="form-group reqs">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding _money" style="text-align: right;" id="fondosmaxAmmount" name="fondosmaxAmmount" placeholder="0.00" type="text" required>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label for="comentarios">Descripción:</label>
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control input-max-width-lg input-max-height-xsm padding-no-padding" id="fondosmaxDescription" name="fondosmaxDescription" value="" placeholder="comentarios ..." style="width: 400px;"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row margin-top-sm">
+                    <div class="form-group margin-right-md">
+                        <button type="button" class="btn btn-secondary btn-sm" id="btnCreteLimitFondo" name="btnCreteLimitFondo">Agregar</button>
+                        <button type="button" class="btn btn-info btn-sm resetform" id="btnCloseLimitBudget" value="frmLimitBudget">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 - Delete FondoLimit -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="delete-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                <h4 class="modal-title" id="myModalLabel">¿ Desea borrar el registro ?</h4>
+                <label class="form-font-size-sm" id="lblDataErase"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="modal-btn-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jsgrid")
+
+    <script src="~/Scripts/utils/utils.js"></script>
+    <script src="~/Scripts/budget/budgetautorization.js"></script>
+    <script src="~/Scripts/utils/datetime/datetime.js"></script>
+    <script>
+            $(".CompanyDependecyPayment").on('change', function (e) {
+
+                var form = this.form;
+                var child = this.getAttribute("tochild");
+
+                loadDataNotDependency(PrepareRequestGetBankAccountbyCompanyUserBanAccount(this.value, "/Formcontrol/getBankAccountbyCompaniesUserBankAccount"), null, form.name, child, true);
+
+            });
+        </script>
+}

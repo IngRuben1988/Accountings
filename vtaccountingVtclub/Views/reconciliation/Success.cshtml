@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+@using VTAworldpass.VTAServices.Services.reconciliations.model;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Success</title>
+</head>
+<body>
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Quantity</td>
+        </tr>
+        @foreach (var p in ViewBag.products)
+        {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Name</td>
+                <td>@p.Price</td>
+                <td>@p.Quantity</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

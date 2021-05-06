@@ -1,0 +1,70 @@
+﻿<br />
+<div>
+    @{
+        ViewBag.Title = "Reporte saldo en banco ";
+    }
+</div>
+<div class="custom_page_title">Reporte saldo en banco </div>
+<!-- Form 1 - Búsqueda avnzada + Grid -->
+<div class="form-font-size-sm">
+    <div class="form-left-spacing " id="">
+        <div class="margin-top-sm">
+            <div class="margin-top-sm">
+                <form id="frmAReportCashClosing" name="frmAReportCashClosing" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                    <div class="row">
+                        <div class="form-group margin-right-md">
+                            <label class="control-label" for="dateReportStart">Fecha Inicio:</label>
+                            @*<div class="form-group">
+                                    <input class="form-control input-height-xsm padding-no-padding dateReport" id="dateReportStart" name="dateReportStart" readonly="">
+                                </div>*@
+                            <div class="input-group date" id="appdate1" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input datetimeinput dateReport" data-target="#appdate1" id="dateReportStart" name="dateReportStart" />
+                                <div class="input-group-append" data-target="#appdate1" data-toggle="datetimepicker" data-link-format="dd/mm/yyyy">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group margin-right-md">
+                            <label class="control-label" for="dateReportEnd">Fecha Fin:</label>
+                            @*<div class="form-group">
+                                    <input class="form-control input-height-xsm padding-no-padding dateReport" id="dateReportEnd" name="dateReportEnd" readonly="">
+                                </div>*@
+                            <div class="input-group date" id="appdate2" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input datetimeinput dateReport" data-target="#appdate2" id="dateReportEnd" name="dateReportEnd" />
+                                <div class="input-group-append" data-target="#appdate2" data-toggle="datetimepicker" data-link-format="dd/mm/yyyy">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group margin-right-md ">
+                            <label class="control-label" for="Segment">Segmento:</label>
+                            <div class="form-group reqs">
+                                <select class="form-control input-height-xsm padding-no-padding Segment" id="Segment" name="Segment" placeholder="Seleccione ..."> </select>
+                            </div>
+                        </div>
+                        @RenderPage("../common/_DependencyCompanyAccount.cshtml")
+
+                        <div class="form-group margin-right-md">
+                            <button class="btn btn-sm btn-secondary" id="btngenerateReport" name="btngenerateReport">Generar</button>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="margin-right-md">
+                    <button class="btn btn-sm btn-success btn-sm fromRigth" id="btnExportCashClosing" name="btnExportCashClosing">Exportar Excel</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br />
+
+<div id="divToExportExcel" class=""> </div>
+
+@section Scripts {
+    <link href="~/Content/datatable/datatables.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/datatable")
+    @Scripts.Render("~/bundles/cashbaccount")
+
+}

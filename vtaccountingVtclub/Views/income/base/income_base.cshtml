@@ -1,0 +1,202 @@
+﻿
+<div class="container-fluid" style="font-size: 12px !important;">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <center>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item"><a id="home-tab" data-toggle="tab" href="#home" role="tab" class="nav-link active" aria-controls="home" aria-selected="true"><b>INFORMACIÓN DE INGRESOS </b> | <b> <label id="incomeIdentifier" name="incomeIdentifier" class="incomeIdentifier"></label> </b></a></li>
+                        <li class="nav-item"><a id="menu1-tab" data-toggle="tab" href="#menu1" role="tab" class="nav-link href_attachments" aria-controls="menu1">ARCHIVOS ADJUNTOS</a></li>
+                        <li class="nav-item"><a id="menu2-tab" data-toggle="tab" href="#menu2" role="tab" class="nav-link href_logging" aria-controls="menu2">SEGUIMIENTOS</a></li>
+                    </ul>
+                </center>
+
+                <div class="tab-content" id="myTabContent">
+                    <div id="home" class="col-md-12 tab-pane fade show active form-font-size-sm" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="col-md-12 form-left-spacing" id="" style="padding-top:1em !important; padding-left: 3em !important;">
+                            <form id="incomeForm" name="incomeForm" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                                <!-- 1 -->
+                                <div class="row">
+                                    <div class="form-group margin-right-md" style="display:none;">
+                                        <label class="control-label" for="item">item:</label>
+                                        <input class="form-control input-height-xsm padding-no-padding" id="item" name="item" type="text" value="0">
+                                    </div>
+                                    <div class="form-group margin-right-md ">
+                                        <div class="form-group reqs">
+                                            <label class="control-label label-margin-right-sm" for="segment">
+                                                Segmento:<br />
+                                                <select class="form-control input-height-xsm padding-no-padding segment" id="segment" name="segment" placeholder="Seleccione ..."> </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group margin-right-md ">
+                                        <div class="form-group reqs">
+                                            <label class="control-label label-margin-right-sm" for="company">
+                                                Unidad de negocio:<br />
+                                                <select class="form-control input-height-xsm padding-no-padding company" id="company" name="company" placeholder="Seleccione ..."> </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group margin-right-md ">
+                                        <div class="form-group">
+                                            <label class="control-label label-margin-right-sm" for="applicationdateString0">
+                                                Fecha de aplicación:<br />
+                                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimepicker-input applicationdatestring" data-target="#datetimepicker1" id="applicationdatestring" name="applicationdatestring" maxlength="10" />
+                                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group margin-right-md" style="">
+                                        <div class="form-group reqs">
+                                            <label class="control-label label-margin-right-sm" for="currency">
+                                                Moneda:<br />
+                                                <select class="form-control input-height-xsm padding-no-padding currency" id="currency" name="currency" readOnly></select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- Carga de archivos -->
+                    <div id="menu1" class="col-md-12 tab-pane fade form-font-size-sm" role="tabpanel" aria-labelledby="menu1-tab">
+                        @RenderPage("income_attachment.cshtml")
+                    </div>
+                    <!-- Captura de comentarios -->
+                    <div id="menu2" class="col-md-12 tab-pane fade form-font-size-sm" role="tabpanel" aria-labelledby="menu2-tab">
+                        @RenderPage("income_comment.cshtml")
+                    </div>
+                    <div class="col-md-12" style="padding-top:3em !important">
+                        <!-- FORM 2 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col col-11">
+                                        <label class=""><b>CONCEPTOS DE INGRESOS</b></label>
+                                    </div>
+
+                                    <div class="col col-1" style="margin-top: 0.8em;">
+                                        <center>
+                                            <i class="far fa-eye" data-toggle="collapse" data-target="#formTargetIncome"></i>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div id="formTargetIncome" class="collapse show">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="">
+                                                <div id="jsGridIncomeItems">
+                                                    <!-- <label>JSGrid</label>-->
+                                                    <!--Table-->
+                                                    <table id="jsGridIncomeItems" name="jsGridIncomeItems" class="jsGridIncomeItems table tables table-hover table-sm table-condensed table-responsive-sm ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No.</th>
+                                                                <th>Categor&iacute;a</th>
+                                                                <th>Tipo</th>
+                                                                <th>Subtotal</th>
+                                                                <th>Descripci&oacute;n</th>
+                                                                <th colspan="2" style="text-align: center;"><i class="fas fa-cog"></i></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                    <!--Table-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col col-10">
+                                        <b><label>Total: &nbsp;$</label> <label id="lbltoTalCost" class="lbltoTalCost">0.00</label></b>
+                                    </div>
+                                    <div class="col col-2">
+                                        <center>
+                                            <button type="button" class="btn btn-primary btn-sm" id="printitemform" name="printitemform" data-toggle="modal" data-target="#incomeitemModal"> Nuevo ingreso</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-top:3em !important">
+                        <!-- FORM 3 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col col-11">
+                                        <label class=""><b>MOVIMIENTOS DE INGRESO</b></label>
+                                    </div>
+                                    <div class="col col-1">
+                                        <center>
+                                            <i class="far fa-eye" data-toggle="collapse" data-target="#formTargetMovementsIncome"></i>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="formTargetMovementsIncome" class="collapse show">
+                                    <div class="row">
+                                        <div class="col-md-12" id="colmd81" style="background-color:transparent;">
+                                            <div class="form-font-size-sm">
+                                                <div id="jsGridIncomeMovements">
+                                                    <table id="jsGridIncomeMovements" name="jsGridIncomeMovements" class="jsGridIncomeMovements table tables table-hover table-sm table-condensed table-responsive-sm ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No.</th>
+                                                                <th>Categor&iacute;a</th>
+                                                                <th>Tipo</th>
+                                                                <th>Subtotal</th>
+                                                                <th>Descripci&oacute;n</th>
+                                                                <th colspan="2" style="text-align: center;"><i class="fas fa-cog"></i></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col col-10">
+                                        <b>
+                                            <label>Total : $</label>
+                                            <label class="toTalCostMovements" id="toTalCost">0.00</label>
+                                        </b>
+                                    </div>
+                                    <div class="col col-2">
+                                        <center>
+                                            <button type="button" class="btn btn-primary btn-sm" id="printitemform" name="printitemform" data-toggle="modal" data-target="#incomemovementModal"> Nuevo movimiento</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

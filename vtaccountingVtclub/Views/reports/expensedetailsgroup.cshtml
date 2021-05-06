@@ -1,0 +1,661 @@
+﻿<div style="padding-top:3em;">
+
+    <br />
+    <div>
+        @{
+            ViewBag.Title = "Gastos Mensuales Centro de Costos";
+        }
+    </div>
+    <div class="custom_page_title"> Reporte de Gastos Mensuales Centro de Costos </div>
+    <!-- Form 1 - Búsqueda avnzada + Grid -->
+    <div class="form-font-size-sm">
+
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="col-lg-9">
+                    <form id="frmAvanzadaReportExpensesGroup" name="frmAvanzadaReportExpensesGroup"
+                          role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                        <div class="form-row">
+                            <div class="form-group col margin-right-md ">
+                                <label class="col-form-label" for="hotel">A&#xF1;o:</label>
+                                <div class="form-group">
+                                    <select class="year form-control input-height-xsm padding-no-padding"
+                                            id="year" name="year" placeholder="Seleccione ..."></select>
+                                </div>
+                            </div>
+                            <div class="form-group col margin-right-md ">
+                                <label class="col-form-label" for="hotel">Mes:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm padding-no-padding month"
+                                            id="month" name="month" placeholder="Seleccione ...">
+                                        <option value="1">Enero</option>
+                                        <option value="2">Febrero</option>
+                                        <option value="3">Marzo</option>
+                                        <option value="4">Abril</option>
+                                        <option value="5">Mayo</option>
+                                        <option value="6">Junio</option>
+                                        <option value="7">Julio</option>
+                                        <option value="8">Agosto</option>
+                                        <option value="9">Septiembre</option>
+                                        <option value="10">Octubre</option>
+                                        <option value="11">Noviembre</option>
+                                        <option value="12">Diciembre</option>
+                                        <!-- <option value="0" selected="selected">Todos</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-right-md ">
+                                <label class="col-form-label" for="Company">Empresa:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm padding-no-padding Company"
+                                            id="Company" name="Company" onchange="populategroupcompanies(this.id, this.value, &apos;childcompanies&apos;)"
+                                            placeholder="Seleccione ..."></select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-right-md ">
+                                <label class="col-form-label" for="typeReport">Tipo de Reporte:</label>
+                                <div class="form-group">
+                                    <select class="form-control input-height-xsm padding-no-padding typeReport"
+                                            id="typeReport" name="typeReport" placeholder="Seleccione ..."></select>
+                                </div>
+                            </div>
+                            <div class="form-group col margin-right-md "></div>
+                        </div>
+                    </form>
+                </div>
+
+                @using (Html.BeginForm("ExportToExcel", "reports", FormMethod.Post, new { @class = "fromRigth" }))
+                {
+
+                }
+
+            </div>
+            <div class="col-lg-4">
+                <hr>
+                <div class="childcompanies" id="childcompanies" name="childcompanies"></div>
+                <hr>
+            </div>
+            <div class="container col-lg-12"></div>
+        </div>
+    </div>
+    <br />
+    <div class="" id="expenseWorkingArea" name="expenseWorkingArea"></div>
+</div>
+
+<style>
+
+    .childCompany-checkbox {
+        margin-left: 15px !important;
+    }
+
+    .childCompany-label {
+        padding-left: 5px !important;
+    }
+</style>
+
+
+
+@section Scripts {
+    <script src="~/Scripts/utils/utils.js"></script>
+    <!-- <script type="text/javascript" src="~/Scripts/excelexportjs.js"></script> -->
+    <!-- <script src="~/Scripts/report/reportExpensesDetails.js"></script> -->
+    <!-- <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script> -->
+
+    <script>
+        $(document).ready(function () {
+
+            loadYearAvailableExpenses(null, "frmAvanzadaReportExpensesGroup", "year", null);
+            loadParentCompanies(null, "frmAvanzadaReportExpensesGroup", "Company", true);
+            loadlReportType(null, "frmAvanzadaReportExpensesGroup", "typeReport", null)
+
+        });
+
+
+        $('#btngenerateReport').click(function (e) {
+            e.preventDefault();
+        });
+
+        appurldata = {};
+        appurldata.single = "/reports/expenseDetails";
+        appurldata.group = "/reports/expenseDetailsGroup";
+
+        async function populategroupcompanies(selectorx, value, selectory) {
+            var s1 = document.getElementById(selectorx);
+            var s2 = document.getElementById(selectory);
+            var s3 = document.getElementById("expenseWorkingArea");
+            s2.innerHTML = "";
+            s3.innerHTML = "";
+
+
+            var jsPromiseGetCompaniesGroup = Promise.resolve(PrepareRequestGetCompaniesGroup(value));
+            let promise = await jsPromiseGetCompaniesGroup;
+
+            if (promise.data.length != 0) {
+
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "Todos";
+                checkbox.value = promise.data.idCompany;
+                checkbox.className = "";
+                s2.appendChild(checkbox);
+                checkbox.onchange = function () {
+                    generateDivExpenseCommpanyArea(this, appurldata.group);
+                };
+
+                var label = document.createElement('label')
+                label.htmlFor = "Todos";
+                label.appendChild(document.createTextNode("Todos"));
+                label.className = "childCompany-label"
+
+                s2.appendChild(label);
+                s2.appendChild(document.createElement("br"));
+
+                var optionArray = promise.data.formSelectModel;
+                for (var option in promise.data.formSelectModel) {
+                    if (optionArray.hasOwnProperty(option)) {
+                        var pair = optionArray[option];
+                        var checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = pair.shortText;
+                        checkbox.id = pair.shortText;
+                        checkbox.onchange = function () {
+                            generateDivExpenseCommpanyArea(this, appurldata.single);
+                        };
+                        checkbox.value = pair.valueInt;
+                        checkbox.className = "childCompany-checkbox";
+                        s2.appendChild(checkbox);
+
+                        var label = document.createElement('label');
+                        label.htmlFor = pair.shortText;
+                        label.appendChild(document.createTextNode(pair.text));
+                        label.className = "childCompany-label";
+
+                        s2.appendChild(label);
+                        s2.appendChild(document.createElement("br"));
+                    }
+                }
+            }
+            else {
+                notifyMessageGral("La consulta no arrojo resultados", "info", null, null);
+            }
+        }
+
+        var addDivCurrency = (function (addDivCurrency) {
+
+            function generateDivCurrency(selectoradd, company, items, type) {
+
+                /***************************************************/
+                var _table = "", JsonData, margenOperación = {}, totalAmmountMonth = 0, totalData = 0, currrentMonth = 0, currentkey = 0;
+                // var for AccountL1,L2,L3
+                var stringL1StringGlobal = "", stringL2StringGlobal = "", stringL3StringGlobal = "", currentL1 = 0, totalAmmountL1 = 0;
+                var currentL2 = 0, totalAmmountL2 = 0; var currentL3 = 0, totalAmmountL3 = 0, lastL3 = 0;
+                var currentL4 = 0, totalAmmountL4 = 0; var globalTrKeys = 0;
+                /****************************************/
+                var currentkeyIndex = 0, currentCurrrencyString = "", idCurrentDivMonthlyCurrency = "", _idCurrentDivMonthlyCurrency = "", _reportType = "";
+                /****************************************/
+
+                var _results = 0;
+                $.each(items, function (key, value) {
+                    if (value.expensesReport.length != 0) {
+                        _reportType = value.TypeReportName;
+                        currentCurrrencyString = value.CurrencyName;
+                        idCurrentDivMonthlyCurrency = selectoradd + "header";
+                        _idCurrentDivMonthlyCurrency = "#" + idCurrentDivMonthlyCurrency;
+                        _selectorAdd = "#" + selectoradd;
+                        $(_selectorAdd).append("<div id='" + idCurrentDivMonthlyCurrency + "' class='divExpenseMonthlyCurrenciesClass'> </div>");
+                        $(_idCurrentDivMonthlyCurrency).append("<td style=' background-color: #2c3e50 !important; color: #ffffff !important; font-size: 14pt; font-weight: bold; padding: 5px 0px 0px 5px !important;'> Moneda : " + currentCurrrencyString + ".&nbsp; </td>");
+                        $(_idCurrentDivMonthlyCurrency).append("<td style=' background-color: #2c3e50 !important; color: #ffffff !important; font-size: 14pt; font-weight: bold; padding: 5px 0px 0px 5px !important;'> Año : " + value.Year + " &nbsp;.</td>");
+                        createTableMonth(company, key, value.expensesReport);
+                        totalAmmountMonth = 0;
+                        _results = _results += value.expensesReport.length;
+                    }
+                    else {
+                        currentCurrrencyString = "";
+                        idCurrentDivMonthlyCurrency = "";
+                        _idCurrentDivMonthlyCurrency = "";
+                    }
+                });
+
+                function createTableMonth(company, keyCurrency, values) {
+                    globalTrKeys = 0;
+                    $.each(values, function (key, value) {
+                        totalData = value.expenseReporItem.length; // Total items
+                        if (currrentMonth == value.month) {
+                            createTr(keyCurrency, key, value, idTable);
+                        }
+                        else {
+                            totalAmmountMonth = 0;
+                            idTable = "tblExpensesDetail_" + company + "_" + value.monthName + "_" + currentCurrrencyString;
+                            _table = "#" + idTable;
+                            var _nameCompany = "";
+                            if (type == 2) { _nameCompany = value.CompanyNameGroup; } else { _nameCompany = value.CompanyName; }
+                            var table = "<table class='' id='" + idTable + "' style=' border-color: #2c3e50; border-style: solid;'><td colspan='3' class='' style='background-color: #2c3e50; color: #ffffff;'>  Reporte " + _reportType + " &nbsp;&nbsp;[ &nbsp;&nbsp;<label id=''> " + value.monthName + " </label> - <label id=''> " + value.year + " </label> &nbsp;&nbsp; <label id=''>" + _nameCompany + "</label> ] </td> <td style='background-color: #2c3e50; color: #ffffff;'><i class='fas fa-external-link-alt' onclick='expenseDeatailsViewerActionsAlert(" + selectoradd + ")'></i><td>" +
+                                "<thead>" +
+                                "<tr>" +
+                                "<th scope='col' style='color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; max-width: 400px !important; '></th>" +
+                                "<th scope='col' style='color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; max-width: 100px !important;'></th>" +
+                                "<th scope='col' style='color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; max-width: 100px !important;'></th>" +
+                                "<th scope='col' style='color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; max-width: 100px !important;'></th>" +
+                                "</tr>" +
+                                "</thead>" +
+                                "<tbody style='font-size: 11px;'></tbody>" +
+                                "</table> </br>";
+                            $(_idCurrentDivMonthlyCurrency).append(table);
+                            createTr(keyCurrency, key, value, idTable);
+                            globalTrKeys = 0;
+                        }
+                        currrentMonth = value.month; // asiganando el mes para evaluar si es el mismo en la siguiente iteración;
+                    });
+
+                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td style='font-size: 12pt';> &nbsp;&nbsp;&nbsp;  Utilidad : " + covertToNatural(values[0].totalincome + values[0].totalexpense) + " </td>" + "<td> </td>" + "<td> &nbsp; </td>" + "<td> &nbsp; </td>" + "</tr>");
+                    globalTrKeys = globalTrKeys + 1;
+
+
+                    /****************************************/
+                    currrentMonth = 0; // Inicializando a cero global;
+                }
+
+                function createTr(keyCurrency, keyExpenseReport, data, idTable) {
+                    var resulttr = "";
+                    totalData = data.expenseReporItem.length;
+                    var row = "";
+                    $.each(data.expenseReporItem, function (key, value) {
+                        currentkey = key;
+                        if (value.length != 0) { // AccL3
+                            if (currentL3 != value.Accountl3) {
+                                row = "tr#trexpense" + (lastL3) + "";
+                                $(_table).find(row).find('td:eq(1)').html(" " + covertToNatural(totalAmmountL3) + '');
+                                totalAmmountL3 = value.AmmountTotal;
+                            }
+                            else {
+                                totalAmmountL3 = totalAmmountL3 + value.AmmountTotal;
+                            } // AccL2
+                            if (currentL2 != value.Accountl2) {
+
+                                if (globalTrKeys != 0) {
+                                    row = "tr#trexpense" + (globalTrKeys - 1) + "";
+                                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td> &nbsp; </td>" + "<td class='' style='border-top-color: #2c3e50;border-top-style: solid;'>  </td>" + "<td> " + "&nbsp;" + " </td>" + "<td class=''> " + "&nbsp;" + "</td>" + "</tr>");
+                                    globalTrKeys = globalTrKeys + 1;
+                                    row = "tr#trexpense" + (globalTrKeys - 1) + "";
+                                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td class='' style='font-size: 12pt;'> &nbsp; &nbsp; &nbsp;" + "Total " + stringL2StringGlobal + "</td>" + "<td style=''>  </td>" + "<td class='tdbold' style='width: 150px !important; font-size: 12pt;'>  " + covertToNatural(totalAmmountL2) + "<td> " + "" + " </td>" + "</tr>");
+                                    globalTrKeys = globalTrKeys + 1;
+                                    row = "tr#trexpense" + (globalTrKeys - 1) + "";
+                                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td> &nbsp; </td>" + "<td> </td>" + "<td> " + "&nbsp;" + " </td>" + "<td class=''> " + "&nbsp;" + "</td>" + "</tr>");
+                                    globalTrKeys = globalTrKeys + 1;
+                                }
+                                totalAmmountL2 = value.AmmountTotal;
+                            }
+                            else {
+                                totalAmmountL2 = totalAmmountL2 + value.AmmountTotal;
+                            } // AccL1
+                            if (currentL1 != value.Accountl1) {
+                                if (globalTrKeys != 0) {
+                                    row = "tr#trexpense" + (globalTrKeys - 1) + "";
+                                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td style='width: 300px !important; font-size: 14pt; font-weight: bold;'> &nbsp; &nbsp; &nbsp;" + "Total " + stringL1StringGlobal + "</td>" + "<td class='' > " + "</td>" + "<td>" + "" + " </td>" + "<td class='tdbold' style='width: 100px !important; font-size: 14pt; font-weight: bold;'> " + covertToNatural(totalAmmountL1) + " </td>" + "</tr>");
+                                    // end empty
+                                    globalTrKeys = globalTrKeys + 1;
+                                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td> &nbsp; </td>" + "<td>  </td>" + "<td> &nbsp; </td>" + "<td> &nbsp; </td>" + "</tr>");
+                                    globalTrKeys = globalTrKeys + 1;
+                                }
+                                totalAmmountL1 = value.AmmountTotal;
+                            }
+                            else {
+                                totalAmmountL1 = totalAmmountL1 + value.AmmountTotal;
+                            }
+                            createTd(keyCurrency, keyExpenseReport, key, "", data, value);
+                            totalAmmountMonth = totalAmmountMonth + value.AmmountTotal;
+                        }
+                    });
+                    row = "tr#trexpense" + (lastL3) + "";
+                    $(_table).find(row).find('td:eq(1)').html("" + covertToNatural(totalAmmountL3) + '');
+
+                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td> &nbsp; </td>" + "<td class='' style=' border-top-color: #2c3e50;border-top-style: solid;'>  </td>" + "<td> " + "&nbsp;" + " </td>" + "<td class=''> " + "&nbsp;" + "</td>" + "</tr>");
+                    globalTrKeys = globalTrKeys + 1;
+
+                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td style='font-size: 12pt;'> &nbsp; &nbsp; &nbsp;" + "Total " + stringL2StringGlobal + " </td>" + "<td>   </td>" + "<td class='tdbold' style='width: 150px !important; font-size: 12pt;'> " + covertToNatural(totalAmmountL2) + " </td>" + "<td> " + "" + " </td>" + "</tr>");
+                    globalTrKeys = globalTrKeys + 1;
+
+                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td> &nbsp; </td>" + "<td>  </td>" + "<td class='tdbold' style='width: 100px !important;'> " + "&nbsp;" + " </td>" + "<td> " + "&nbsp;" + " </td>" + "</tr>");
+                    globalTrKeys = globalTrKeys + 1;
+                    //AcountL1
+                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td style='width: 300px !important; font-size: 14pt; font-weight: bold;'> Total " + stringL1StringGlobal + " </td>" + "<td> </td>" + "<td>  </td>" + "<td class='tdbold' style='width: 150px !important; font-size: 14pt; font-weight: bold;'> " + covertToNatural(totalAmmountL1) + " </td>" + "</tr>");
+                    globalTrKeys = globalTrKeys + 1;
+                    // end empty
+                    $('' + _table + '> tbody:last-child').append("<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td> &nbsp; </td>" + "<td> </td>" + "<td> &nbsp; </td>" + "<td> &nbsp; </td>" + "</tr>");
+                    globalTrKeys = globalTrKeys + 1;
+
+                    currentL1 = 0; currentL2 = 0; currentL4 = 0; totalAmmountL1 = 0; totalAmmountL2 = 0; totalAmmountL3 = 0; totalAmmountL4 = 0; lastL3 = 0;
+                    return resulttr;
+                }
+
+                function createTd(keyCurrency, keyExpenseReport, keyReportItem, currency, parent, data) {
+                    var tr = "", endtr = "</tr>", result = "";
+                    var stringL1String = currentL1 != data.Accountl1 ? stringL1String = data.accountl1Name : "";
+                    var stringL2String = currentL2 != data.Accountl2 ? stringL2String = data.accountl2Name : "";
+                    var stringL3String = currentL3 != data.Accountl3 ? stringL3String = data.accountl3Name : "";
+                    var stringL4String = currentL4 != data.Accountl4 ? stringL4String = data.accountl4Name : "";
+
+                    stringL2StringGlobal = data.accountl2Name;
+                    stringL1StringGlobal = data.accountl1Name;
+
+                    if (currentkey == 0) {
+                        totalAmmountL1 = data.AmmountTotal; totalAmmountL2 = data.AmmountTotal; totalAmmountL3 = data.AmmountTotal; totalAmmountL4 = data.AmmountTotal;
+                    }
+                    // Evaluando AccountL1 para acumular o mostrar valor de L1
+                    if (currentL1 != data.Accountl1) {
+                        result = "<tr class='trexpense accountL1' id='trexpense" + globalTrKeys + "'>" + "<td style='width: 300px !important; font-size: 9pt; font-weight: bold;'>" + stringL1String + " </td>" + "<td>  </td>" + "<td> </td>" + "<td> </td>" + endtr;
+                        totalAmmountL1 = data.AmmountTotal;
+                        globalTrKeys = globalTrKeys + 1;
+                        $('' + _table + '> tbody:last-child').append(result);
+                    }
+                    // Evaluando AccountL2 para acumular o mostrar valor de L2
+                    if (currentL2 != data.Accountl2) {
+                        result = "<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td style='width: 300px !important; font-size: 9pt;'>&nbsp;" + stringL2String + " </td>" + "<td>   </td>" + "<td> </td>" + "<td> </td>" + endtr;
+                        totalAmmountL2 = data.AmmountTotal;
+                        globalTrKeys = globalTrKeys + 1;
+                        $('' + _table + '> tbody:last-child').append(result);
+                    }
+                    // Evaluando AccountL3 para acumular o mostrar valor de L3
+                    if (currentL3 != data.Accountl3) {
+                        result = "<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td style='width: 300px !important; font-size: 9pt;'>&nbsp;&nbsp;&nbsp;" + stringL3String + "</td>" + "<td style='width: 100px !important; font-weight: bold;'>   </td>" + "<td> " + "" + " </td>" + "<td>" + "" + " </td>" + endtr;
+                        lastL3 = globalTrKeys;
+                        globalTrKeys = globalTrKeys + 1;
+                        $('' + _table + '> tbody:last-child').append(result);
+                    }
+                    // Evaluando AccountL4
+                    if (currentL4 != data.Accountl4) {
+                        result = "<tr class='trexpense' id='trexpense" + globalTrKeys + "'>" + "<td style='width: 300px !important; font-size: 9pt;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + stringL4String + "</td>" + "<td id='tdexpense" + globalTrKeys + "'  tabindex='0'  data-toggle='popover'  data-trigger='focus' class='popover-dismiss' style='width: 100px !important; text-align: right;' onclick='addDivCurrency.generateSourcedataAlert(" + parent.Currency + "," + parent.year + "," + parent.month + "," + parent.Company + "," + parent.TypeReport + "," + keyReportItem + ") '> " + data.AmmountTotalString + "  </td>" + "<td> " + "" + " </td>" + "<td>" + "" + " </td>" + endtr;
+                        globalTrKeys = globalTrKeys + 1;
+                        $('' + _table + '> tbody:last-child').append(result);
+                    }
+                    currentL1 = data.Accountl1; currentL2 = data.Accountl2; currentL3 = data.Accountl3; currentL4 = data.Accountl4;
+                    return result;
+                }
+                if (_results == 0) { notifyMessageGral("La búsqueda no arrojo resultados", "info", null, null); }
+            }
+
+            function generateSourcedataAlert(currency, year, month, company, typereport, item) {
+
+                var jsPromiseGetexpenseReporItem = Promise.resolve(getDataExpenseReportItem(currency, year, month, company, typereport, item));
+                jsPromiseGetexpenseReporItem.then(function (response) {
+
+                    if (response.success == true) {
+
+
+                        var reportItem = response.data.accountl3Name + " - " + response.data.accountl4Name;
+                        var docitems = response.data.docitems;
+                        // $("#modal-body").append('<div id="divTable"></div >');
+
+                        var _tablehead = "<table class='tblReportItemDocitemCopy' id='tblReportItemDocitemCopy' style=' border-color: #2c3e50; border-style: solid;'> " +
+                            "<thead style='display: block; background-color: #2c3e50 !important;'>" +
+                            "<tr>" +
+                            "<th scope='col' style='color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; width: 150px !important; text-align: center;'> Identificador </th>" +
+                            "<th scope='col' style='color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; width: 150px !important; text-align: center;'> Costo </th>" +
+                            "<th scope='col' style='color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important;'> Referencia </th>" +
+                            "</tr>" +
+                            "</thead>";
+
+                        var _tablebody = " <tbody style='font-size: 11px; max-height: 500px; overflow-y: auto; overflow-x:hidden; display: block;'> ";
+
+
+                        $.each(docitems, function (key, value) {
+                            _tablebody = _tablebody + "<tr class='trPopover' id='trexpense'>" + "<td style='font-size: 11px; font-weight: bold; padding: 1px 5px 1px 5px !important; width: 150px !important; text-align: left;'>&nbsp;" + value.InvoiceIdentifier + " </td>" + "<td style='text-align: center; padding: 1px 5px 1px 5px !important; width: 150px !important;'>" + value.AmmountTotalString + " </td> <td style='padding: 1px 5px 1px 5px !important; text-align: justify;'> " + value.description + " </td> </tr>";
+                        });
+
+                        var _tablebottom = " </tbody> " +
+                            " </table> ";
+
+                        var _table = _tablehead + _tablebody + _tablebottom;
+
+                        $.confirm({
+                            title: reportItem,
+                            content: _table,
+                            useBootstrap: false,
+                            boxWidth: '50%',
+                            theme: 'material',
+                            type: 'dark',
+                            draggable: true,
+                            icon: 'fa fa-info-circle',
+                            containerFluid: true,
+                            buttons: {
+
+                                generateExcel: {
+                                    text: 'XLS',
+                                    btnClass: 'btn-green',
+                                    // keys: ['enter', 'shift'],
+                                    action: function () {
+                                        // $.alert('Something else?');
+                                        tableToExcel('tblReportItemDocitemCopy', 'Gastos');
+                                    }
+                                },
+                                cancel: {
+                                    text: 'Cerrar',
+                                    btnClass: 'btn-default',
+                                    action: function () {
+                                    }
+                                    // $.alert('Canceled!');
+                                }
+                            }
+                        });
+                    }
+                })
+                    .catch(function (error) {
+                        console.log("Failed generateSourcedataAlert! ->", error);
+                        notifyMessageGral("No se pueden cargar el detallde  de gastos. ", "error", null, null);
+                    });
+
+
+
+
+
+
+                function getDataExpenseReportItem(currency, year, month, company, typereport, item) {
+
+                    var c = $.ajax({
+                        method: "GET"
+                        , url: "/reports/expensedetailsreporitem"
+                        , data: {
+                            currency: currency,
+                            year: year,
+                            month: month,
+                            Company: company,
+                            typeReport: typereport,
+                            item: item
+                        }
+                        , datatype: 'json'
+                    })
+                        .done(function (data, textStatus, jqXHR) {
+                        })
+                        .fail(function (jqXHR, textStatus, errorThrown) {
+                        });
+                    return c;
+                }
+            }
+
+
+            return {
+
+                generateDivCurrency: generateDivCurrency,
+                generateSourcedataAlert: generateSourcedataAlert
+            }
+
+        })();
+
+        async function generateDivExpenseCommpanyArea(_this, url) {
+
+            var object = {};
+
+            var workinkArea = document.getElementById('expenseWorkingArea');
+            var name = _this.name;
+            var divName = "divexpensecompanyarea" + name;
+
+            if (_this.checked) {
+
+                var _year = document.getElementsByClassName("year")[0].value;
+                var _month = document.getElementsByClassName("month")[0].value;
+                var _company = document.getElementsByClassName("Company")[0].value;
+                var _typereport = document.getElementsByClassName("typeReport")[0].value;
+
+                if (empty(_year)) {
+                    notifyMessageGral("Debe seleccionar el año.", "error", null, null);
+                    return;
+                }
+                if (empty(_month)) {
+                    notifyMessageGral("Debe seleccionar el mes.", "error", null, null);
+                    return;
+                }
+                /* if (empty(_company)) {
+                    // notifyMessageGral("Debe seleccionar la empresa", "error", null, null);
+                    return;
+                } */
+                if (empty(_typereport)) {
+                    notifyMessageGral("Debe seleccionar el tipo de reporte", "error", null, null);
+                    return;
+                }
+
+                object.year = _year;
+                object.month = _month;
+                object.Company = _this.value;
+                object.typeReport = _typereport;
+
+                // console.log(object);
+
+
+                var div = document.createElement('div');
+                div.name = divName
+                div.id = divName;
+                div.className = divName;
+
+                workinkArea.appendChild(div);
+
+                var jsPromiseGetDataCompany = Promise.resolve(PrepareRequestGetDataCompaniesGroup(object, url));
+                let promisedata = await jsPromiseGetDataCompany;
+
+                if (promisedata != undefined || promisedata.data.length != 0 || promisedata.data.expensesReport.length != 0) {
+                    addDivCurrency.generateDivCurrency(divName, name, promisedata.data, 2);
+                }
+                else {
+                    notifyMessageGral("La consulta no arrojo resultados", "info", null, null);
+                }
+            }
+            else {
+                var leftSection = document.getElementById(divName);
+                if (leftSection != null) {
+                    leftSection.parentNode.removeChild(leftSection);
+                }
+            }
+        }
+
+        
+
+
+
+        function PrepareRequestGetCompaniesGroup(id) {
+            var c = $.ajax({
+                method: "GET"
+                , url: "/formcontrol/getChildCompanies"
+                , data: { parent: id }
+                , datatype: 'json'
+            })
+                .done(function (data, textStatus, jqXHR) {
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                });
+            return c;
+        }
+
+        function PrepareRequestGetDataCompaniesGroup(object, url) {
+            var c = $.ajax({
+                method: "POST"
+                , url: url
+                , data: object
+                , datatype: 'json'
+            })
+                .done(function (data, textStatus, jqXHR) {
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                });
+            return c;
+        }
+
+        function expenseDeatailsViewerActions(action, selector) {
+            switch (action) {
+                case 1:
+                    {
+                        var element = document.getElementsByClassName(selector);
+                        modal.style.display = "none";
+                    }
+                    break;
+                case 2:
+                    {
+                        var element = document.getElementsByClassName(selector);
+                        modal.style.display = "block";
+                    }
+                    break;
+            }
+        }
+
+        function expenseDeatailsViewerActionsAlert(selector) {
+
+            _element = "." + selector.name;
+            var _copy = $(_element).clone();
+
+            $.dialog({
+                title: "Report",
+                content: _copy,
+                bgOpacity: 0,
+                boxWidth: '100%',
+                draggable: true,
+                columnClass: 'col-md-8 col-md-offset-4 col-sm-8 col-sm-offset-3 col-xs-10 col-xs-offset-1',
+            });
+
+        }
+
+        /******************************************************************************************/
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id + "header")) {
+                /* if present, the header is where you move the DIV from:*/
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            } else {
+                /* otherwise, move the DIV from anywhere inside the DIV:*/
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+
+
+    </script>
+}
+
+

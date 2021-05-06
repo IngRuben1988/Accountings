@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "";
+}
+
+
+<br/>
+<br>
+<div class="form-font-size-sm">
+    <div class="form-left-spacing" id="formTargetDiv">
+        <form id="searchForm" name="searchForm" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+            <div class="row">
+                    <div class="form-group margin-right-md ">
+                        <label class="control-label" for="id">Id gasto:</label>
+                        <div class="form-group reqs">
+                            <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="id" name="id" placeholder="Ingrese id..." style="width: 100px;">
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md ">
+                        <label class="control-label" for="hotel">Hotel:</label>
+                        <div class="form-group reqs">
+                            <select class="form-control input-height-xsm padding-no-padding" id="hotel" name="hotel" placeholder="Seleccione ..."> </select>
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md">
+                        <label class="control-label" for="ammountIni">Costo inicial:</label>
+                        <b>$</b>
+                        <div class="form-group">
+                            <input class="form-control input-height-xsm padding-no-padding" data-toggle="tooltip" title="Aplica para el monto de la gasto" id="ammountIni" name="ammountIni" type="text" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md">
+                        <label class="control-label" for="ammountEnd">Costo final:</label>
+                        <b>$</b>
+                        <div class="form-group">
+                            <input class="form-control input-height-xsm padding-no-padding" data-toggle="tooltip" title="Aplica para el monto de la gasto" id="ammountEnd" name="ammountEnd" type="text" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md " style="display: none;">
+                        <label class="control-label" for="exptype">Tipo gasto:</label>
+                        <div class="form-group reqs">
+                            <select class="form-control input-height-xsm padding-no-padding" id="exptype" name="exptype" style="width: 100px;"> </select>
+                        </div>
+                    </div>
+                    <div class="form-group margin-top-sm margin-right-md">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success btn-sm" id="btnAdvanceSearch" name="btnAdvanceSearch"><span class="glyphicon glyphicon-search"></span> Buscar </button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+
+<br />
+
+<div class="form-font-size-sm">
+    <div id="jsGridcontable"></div>
+</div>
+
+@section Scripts {
+
+<script type="text/javascript" src="~/Scripts/jsgrid-1.5.3/dist/jsgrid.min.js"></script>
+<script type="text/javascript" src="~/Scripts/contable/contable.js"></script>
+<script src="~/Scripts/utils/utils.js"></script>
+    }

@@ -1,0 +1,191 @@
+﻿<br />
+<div>
+    @*{
+    ViewBag.Title = "Reporte de cuentas bancarias";
+    }
+</div>
+<div class="custom_page_title">Reporte corte de cuentas bancarias</div>
+<!-- Form 1 - Búsqueda avnzada
++ Grid -->
+<div class="form-font-size-sm">
+    <div class="form-left-spacing " id="">
+        <div class="margin-top-sm">
+            <div class="margin-top-sm">
+                <form id="frmAReportCashClosing" name="frmAReportCashClosing" role="form"
+                      data-toggle="validator" method="post" class="form-inline bs-component">
+                    <div class="">
+                        <div class="form-group margin-right-md">
+                            <label class="col-form-label" for="dateReportStart">Fecha Inicio:</label>
+                            <div class="form-group">
+                                <input class="form-control input-height-xsm padding-no-padding dateReport"
+                                       id="dateReportStart" name="dateReportStart" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group margin-right-md">
+                            <label class="col-form-label" for="dateReportEnd">Fecha Fin:</label>
+                            <div class="form-group">
+                                <input class="form-control input-height-xsm padding-no-padding dateReport"
+                                       id="dateReportEnd" name="dateReportEnd" readonly>
+                            </div>
+                        </div>
+                        @{ 
+                        if (ViewBag.ishotel != true) {
+                            <div class="form-group margin-right-md ">
+                                <label class="col-form-label" for="externalgroup">Rubro:</label>
+                                <div class="form-group ">
+                                    <select class="form-control input-height-xsm padding-no-padding externalgroup"
+                                            id="externalgroup" name="externalgroup" placeholder="Seleccione ...">
+                                        <!-- <option value="0"> Seleccione ...</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                        } else { } } 
+                        @RenderPage("../common/_DependencyCompanyAccount.cshtml")
+                        <div class="form-group margin-right-md ">
+                            <button class="btn btn-sm btn-secondary" id="btngenerateReport" name="btngenerateReport">Generar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- FORM TO EXPORT EXCEL -->
+                @*using (Html.BeginForm(&quot;ExportToExcel&quot;, &quot;reports&quot;,
+                FormMethod.Post, new { @class = &quot;fromRigth&quot; })) {
+                <input type="hidden"
+                       name="nameFile" value="">
+                <input type="hidden" name="gridHtml" value="">
+                <div class="form-group col margin-right-md ">
+                    <input type="submit" class="btn btn-success btn-sm" id="btnExportCashClosing"
+                           value="Exportar Excel">
+                </div>}*@
+                <button class="btn btn-sm btn-success btn-sm fromRigth" id="btnExportCashClosing"
+                        name="btnExportCashClosing">
+                    Exportar Excel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div id="divToExportExcel" class="" style="padding-left: 100px; padding-right: 100px;">
+    <table class="" id="tblfinancialStateAccountTimeLine" name="tblfinancialStateAccountTimeLine"
+           style="width:100%; border-color: #2c3e50; border-style: solid;">
+        <caption class="" style="background-color: #2c3e50; color: #ffffff;">
+            [&#xA0;&#xA0; Historial Detallado &#xA0;&#xA0;
+            <label id="_lblDate"></label>-
+            <label id="_lblBAccount"></label>&#xA0;&#xA0; ] &#xA0; [&#xA0; Saldo anterior: $ &#xA0;
+            <label id="_lblBalancebefore"></label>&#xA0;]
+        </caption>
+        <thead>
+            <tr>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; width:200px; text-align:center">Fecha</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important;">Descripci&#xF3;n</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center">Cargo</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center">Abono</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center">Saldo</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 11px;"></tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+
+<script src="~/Scripts/utils/datetime.js"></script>
+<script src="~/Scripts/utils/utils.js"></script>
+<!-- <script src="~/Scripts/report/cashClosing.js"></script> -->
+<!-- <script src="~/Scripts/tableToExcel.js"></script> -->
+
+<script>
+    var frm = $("#frmAReportCashClosing");
+
+    $(document).ready(function () {
+
+        // loadSegmentsByUserBankAccount(null, "frmAReportCashClosing", "Segment");
+        loadExternalGroupbyUserBankAccount(null, "frmAReportCashClosing", "externalgroup", true);
+        dateTimePickerFrom(".dateReport", null, null);
+    });
+
+
+    $(".externalgroup").on("change", function (event) {
+        // loadCompaniesBySegmentUserBAccount(null, this.value, 'frmAReportCashClosing', 'Company');
+        loadExternalGroupCompaniesbyUserBankAccount(null, this.value, 'frmAReportCashClosing', 'Company', true);
+    });
+
+
+    $("#btnExportCashClosing").click(function () {
+        // tableToExcel('tblfinancialStateAccountTimeLine', 'Reporte_Corte_de_Caja');
+        window.open("/reports/accountsClosingGenerateExcelConciliations?" + frm.serialize());
+    });
+
+
+    $('#btngenerateReport').click(function (e) {
+        e.preventDefault();
+        $('.xls').remove();
+        if ($('#PaymentMethod').val() != 0) {
+            $("#_lblDate").text('');
+            $("#_lblBAccount").text('');
+            $("#_lblDate").append($("#dateReport").val());
+            $("#_lblBAccount").append($("#PaymentMethod option:selected").text());
+
+            if ($('.financialstateitem').length != 0) $('.financialstateitem').remove();
+            getReporData(frm);
+            // setTimeout(function () { generateButtonsExport(); }, 3000);
+        } else {
+            notifyMessageGral("Debe seleccionar una cuenta.", "warn", null, null);
+        }
+    });
+
+    function generateButtonsExport() {
+        $('.xls').remove();
+        $('#tblfinancialStateAccountTimeLine').tableExport({
+            bootstrap: true,
+            formats: ['xlsx'],
+            filename: $("#dateReport").val() + "-" + $("#PaymentMethod option:selected").text()
+        });
+        // });
+    };
+
+
+    function getReporData(frm) {
+
+        $.ajax({
+            method: "POST"
+            , url: "/reports/accountsClosingReconciliation"
+            , data: frm.serialize()//{ year: year, month: month }
+            , datatype: 'json'
+        })
+            .done(function (data, textStatus, jqXHR) {
+                $('#_lblBalancebefore').html('');
+                $('#tblfinancialStateAccountTimeLine> tbody:last-child').append("<tr class='financialstateitem'> <td></td> <td></td> <td></td> <td></td> <td style='text-align: right; padding-right: 15px;'>" + data.data.balanceBeforeString + "</td> </tr>");
+                createTr(data.data.financialstateitemlist);
+                $("#_lblBalancebefore").append(data.data.balanceBeforeString);
+                $('#tblfinancialStateAccountTimeLine> tbody:last-child').append("<tr class='financialstateitem'> <td></td> <td></td> <td> <p class='thicker'>Saldo Final </p> </td> <td></td> <td style='text-align: right; padding-right: 15px;'> <p class='thicker'>" + data.data.balanceString + " </p> </td> </tr>");
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                notifyMessageGral(jqXHR.message, "warn", null, null);
+            });
+    }
+
+    function createTr(datas) {
+        var tr = "";
+        var endtr = "</tr>"
+        var resulttr = "";
+        $.each(datas, function (key, value) {
+
+            tr = "<tr class='financialstateitem' id='financialstateitem" + key + "'>";
+            if (value.length != 0) {
+                resulttr = (tr + createTd(value) + endtr);
+                $('#tblfinancialStateAccountTimeLine> tbody:last-child').append(resulttr);
+            }
+        });
+    }
+
+    function createTd(data) {
+        var result = ""
+        if (data.accounttype == 1) { result = "<td style='text-align:center'>" + data.aplicationDateString + " </td> <td>" + data.description + " </td> <td> &nbsp; </td> <td style='text-align: right; padding-right: 15px;'> " + data.appliedAmmountString + "</td>" + "<td style='text-align: right; padding-right: 15px;'>" + data.balanceString + " </td>"; }
+        else { result = "<td style='text-align:center'>" + data.aplicationDateString + " </td> <td>" + data.description + " </td> <td style='text-align: right; padding-right: 15px;'>" + data.appliedAmmountString + " </td>" + " <td> &nbsp; </td> <td style='text-align: right; padding-right: 15px;'>" + data.balanceString + " </td>"; }
+        return result;
+    }
+
+</script>
+}

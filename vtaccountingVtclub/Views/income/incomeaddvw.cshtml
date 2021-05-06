@@ -1,0 +1,46 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Captura de ingreso";
+}
+<style>
+    p.input-group-sm > .custom-select, .input-group-sm > .form-control,
+    .input-group-sm > .input-group-append > .btn, .input-group-sm > .input-group-append >
+    .input-group-text, .input-group-sm > .input-group-prepend > .btn, .input-group-sm >
+    .input-group-prepend > .input-group-text {
+        line-height: 0.5;
+    }
+
+    .card-header, .card-footer {
+        height: 40px !important;
+    }
+
+    #printitemform, #btnModalPay {
+        margin-top: -5px;
+    }
+</style>
+<div class="custom_page_title"> Captura de ingreso </div>
+
+<div class="divIncomeGral" style="">
+    @RenderPage("base/income_base.cshtml")
+</div>
+
+@RenderPage("base/income_modals.cshtml")
+
+
+<hr />
+<!-- Button actions  -->
+<div class="form-font-size-sm-a" style="display:flex; flex-direction:row-reverse;padding:0 100px 0 0">
+    @RenderPage("base/income_btn_guardar.cshtml")
+    <div>
+        <a href="/income/incomeaddvw" class="btn btn-success  btn-sm form-font-size-sm-a"><span class="glyphicon glyphicon-plus"></span> Nuevo </a>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/commonincomeinvoice")
+    @Scripts.Render("~/bundles/jsgrid")
+    @Scripts.Render("~/bundles/income")
+    @Styles.Render("~/bundles/css")
+}

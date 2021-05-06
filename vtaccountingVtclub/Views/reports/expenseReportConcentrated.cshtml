@@ -1,0 +1,205 @@
+﻿<br />
+<div>
+    @{
+        ViewBag.Title = "Reporte de gastos concentrado";
+    }
+</div>
+<div class="custom_page_title"> Reporte de gastos concentrado </div>
+<!-- Form 1 - Búsqueda avnzada + Grid -->
+<div class="form-font-size-sm row">
+    <div class="form-left-spacing col-md-12" id="" style="">
+        <form id="frmAvanzadaReportExpenses" name="frmAvanzadaReportExpenses" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+            <div class="margin-right-lg margin-top-sm">
+                <div class="">
+                    <fieldset style="" class="fieldset-custom">
+                        <legend align="left" style="" class="legend-custom">Empresas</legend>
+                        <div class="form-group margin-right-md ">
+                            <label class="control-label" for="Segment">Segmento:</label>
+                            <div class="form-group">
+                                <select class="form-control input-height-xsm padding-no-padding Segment" id="Segment" name="Segment" placeholder="Seleccione ..."> </select>
+                            </div>
+                        </div>
+                        <div class="form-group margin-right-md ">
+                            <label class="control-label" for="Company">Unidad de negocio:</label>
+                            <div class="form-group">
+                                <select class="form-control input-height-xsm padding-no-padding Company" id="Company" name="Company" placeholder="Seleccione ..."></select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="margin-right-lg margin-top-sm">
+                <div class="">
+                    <fieldset style="" class="fieldset-custom">
+                        <legend align="left" style="" class="legend-custom">Clasificación de gasto</legend>
+                        <div class="form-group margin-top-sm margin-right-md ">
+                            <label class="control-label" for="category">Grupo:</label>
+                            <div class="form-group">
+                                <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding category" id="category" name="category" placeholder="Seleccione ...">
+                                    <option value="0">Seleccione ...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group margin-top-sm margin-right-md ">
+                            <label class="control-label" for="Type">Concepto:</label>
+                            <div class="form-group">
+                                <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="Type" name="Type" placeholder="Seleccione ...">
+                                    <option value="0">Seleccione ...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="margin-right-lg margin-top-sm">
+                <div class="form-group ">
+                    <button class="btn btn-sm btn-outline-success" id="btngeneratereport" name="btngeneratereport">Generar</button>&nbsp;&nbsp;&nbsp;  | &nbsp;&nbsp;&nbsp;
+                    <button type="button" class="resetform btn btn-outline-dark btn-sm" id="btnAdvanceSearch" name="btnAdvanceSearch" data-toggle="tooltip" value="searchForm">
+                        <i class="fas fa-redo-alt"></i>
+                        Reiniciar búsqueda
+                    </button>
+                </div>
+                <div class=" ">
+                    <!-- <button type="button" class="btn btn-success btn-sm" id="btnExportExpenses"> <span class="fas fa-file-excel-o"></span> Export to Excel</button> -->
+                    <!--<input class="btn btn-success btn-sm" id="btnReportExportExcel" name="btnReportExportExcel" value="Exportar Excel"> -->
+                </div>
+            </div>
+            <div class="margin-right-lg margin-top-sm">
+                <div class="form-group">
+                    <label data-toggle="collapse" data-target="#formTargetDiv" class="control-label form-font-size-sm">&nbsp; <span class="fa fa-plus-circle " title=""></span> Búsqueda avanzada</label>
+                </div>
+            </div>        
+            <div class="collapse" id="formTargetDiv">
+                <div class="form-group margin-top-sm margin-right-md ">
+                    @RenderPage("../common/_documentAplicationDateFieldSet.cshtml")
+                </div>
+                <div class="form-group margin-top-sm margin-right-md ">
+                    @RenderPage("../common/_documentCreationDateFieldSet.cshtml")
+                </div>
+                <div class="form-group margin-top-sm margin-right-md ">
+                    <label class="control-label" for="results">Resultados:</label>
+                    <div class="form-group">
+                        <select class="form-control input-height-xsm padding-no-padding" id="results" name="results" placeholder="Seleccione ...">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                            <option value="1000" selected="selected">Todos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group margin-top-sm margin-right-md ">
+                    <label class="control-label" for="results">Tipo Egreso:</label>
+                    <div class="form-group">
+                        <select class="form-control input-height-xsm padding-no-padding" id="isTax" name="isTax" placeholder="Seleccione ...">
+                            <option value="0" selected="selected">Seleccione...</option>
+                            <option value="1">Fiscal</option>
+                            <option value="2">No Fiscal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group  margin-top-sm margin-right-md ">
+                    <label class="control-label" for="singleExibitionPayment">Pago en una sola exibición:</label>
+                    <div class="form-group reqs">
+                        <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding singleExibitionPayment" id="singleExibitionPayment" name="singleExibitionPayment" placeholder="Seleccione ...">
+                            <option value="0">Seleccione...</option>
+                            <option value="1">SI</option>
+                            <option value="2">NO</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group margin-top-sm margin-right-md ">
+                    <label class="control-label" for="budgetType">Tipo de presupuesto:</label>
+                    <div class="form-group reqs">
+                        <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding budgetType" id="budgetType" name="budgetType" placeholder="Seleccione ..."> </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="form-left-spacing form-row col-md-5">
+        <div class="margin-right-lg margin-top-sm">
+            <fieldset style="" class="fieldset-custom">
+                <legend align="left" style="" class="legend-custom">Tipo de Reporte</legend>
+                <div class="form-group margin-top-sm margin-right-md">
+                    <div class="" style="background-color:transparent; display:flex" id="_checks">
+                        <div class="form-check">
+                            <input class="form-check-input taxes" type="radio" name="isTax" id="Tax1"
+                                   value="1" checked>
+                            <label class="form-check-label" for="Tax1">
+                                Excel <i class="fas fa-file-excel fa-lg"></i>
+                            </label>
+                        </div>&#xA0;&#xA0;&#xA0; | &#xA0;&#xA0;&#xA0;
+                        <div class="form-check">
+                            <input class="form-check-input taxes" type="radio" name="isTax" id="Tax2"
+                                   value="2">
+                            <label class="form-check-label" for="Tax2">
+                                Excel <i class="fas fa-file-excel fa-lg"></i> + <i class="fas fa-paperclip fa-lg"
+                                                                                   style=""></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="margin-right-lg margin-top-lg">
+            @using (Html.BeginForm("ExportToExcelcompress", "reports", FormMethod.Post, new { @class = "fromRigth" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="nameFile" value="">
+                <input type="hidden" name="gridHtml" value="">
+                <input type="hidden" name="items" id="items" value="">
+                <input type="hidden" name="typeReport" id="typeReport" value="">
+                <div class="form-group col margin-right-md ">
+                    <input type="submit" class="btn btn-success btn-sm" id="btnReportExportExcel" name="btnReportExportExcel" value="Generar Reporte">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<br />
+<div id="divTotalSearch" style="text-align: right;padding-right: 6em;">
+    <label>Total de la b&#xFA;squeda: &#xA0;</label>
+    <label>$ &#xA0;</label>
+    <label id="lblTotalSearch">0.00</label>
+</div>
+<div id="divToExportExcel" class="" style="padding-left: 1px; padding-right: 1px;">
+    <table class="" id="tblExpenseReportconcentrated" name="tblExpenseReportconcentrated"
+           style=" border-color: #2c3e50; border-style: solid; font-size:11px;">
+        <thead>
+            <tr>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:100px;">#</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:50px;">U. Negocio</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:80px;">Fecha</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; width:100px;">Folio Factura</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:150px;">T. Ppto</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:150px;">Grupo</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:150px;">Concepto</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:80px;">Tipo de egreso</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:50px;">Una Exibici&#xF3;n</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:140px;">Raz&#xF3;n social</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:right; width:50px;">Subtotal</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:right; width:50px;">IVA</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:50px;">Otros Impuestos</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:right; width:90px;">Total</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:right" width="90px">Saldo</th>
+                <th style="color: #ffffff !important; background-color: #2c3e50 !important; font-weight: bold !important; padding: 1px 5px 1px 5px !important; text-align:center; width:400px;">Observaciones / Descripci&#xF3;n</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 11px;"></tbody>
+    </table>
+</div>
+
+@section Scripts {
+
+    <script src="~/Scripts/utils/datetime/datetime.js"></script>
+    <script src="~/Scripts/utils/utils.js"></script>
+    <script src="~/Scripts/report/reportexpensesconcentrated.js"></script>
+    <script src="~/Scripts/account/commons/urls.js"></script>
+    <script src="~/Scripts/utils/commos/commonsincomeinvoice.js"></script>
+    <script>
+
+
+    </script>
+}

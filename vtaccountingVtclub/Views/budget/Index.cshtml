@@ -1,0 +1,346 @@
+﻿
+@{
+    ViewBag.Title = @ViewBag.Title;
+}
+
+<br />
+<div class="custom_page_title" id="spTitle"> Movimientos </div>
+<!--  -->
+<!-- Botones principales -->
+<div class="form-inline">
+    <div class="row">
+        <div class="form-group">
+            <button type="button" class="btn btn-info btn-sm" id="btnAddModal" name="btnAddModal" value="#myModa">Capturar movimiento</button>
+        </div>
+        <div class="form-group">
+            <label data-toggle="collapse" data-target="#formTargetDiv" class="control-label form-font-size-sm">&nbsp; <span class="fa fa-plus-circle " title=""></span> Búsqueda avanzada</label>
+            @*<span class="fa fa-plus-circle " data-toggle="collapse" data-target="#formTargetDiv"><label class="control-label form-font-size-sm">&nbsp;Búsqueda avanzada</label></span>*@
+        </div>
+        <!-- <div class="form-group">
+            <button type="button" class="btn btn-warning btn-sm" id="btnPrintAdvanceSearchFondo" name="btnPrintAdvanceSearchFondo"><span class="fas fa-print"></span> Imprimir búsqueda </button>
+        </div> -->
+    </div>
+</div>
+<br>
+<!--  -->
+<!-- Form 1 - Búsqueda avnzada + Grid -->
+<div class="form-font-size-sm">
+    <div class="form-left-spacing collapse" id="formTargetDiv">
+        <form id="frmAvanzadaFondos" name="frmAvanzadaFondos" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+            <div class="row">
+                <div class="form-group margin-right-md" style="display:none;">
+                    <div class="form-group">
+                        <input type="text" name="Type" id="Type" value="@ViewBag.Type" class="form-control input-height-xsm input-max-width-xsm padding-no-padding" />
+                    </div>
+                </div>
+                <div class="form-group margin-right-md ">
+                    <label class="control-label" for="id">#:</label>
+                    <div class="form-group reqs">
+                        <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="id" name="id" placeholder="Ingrese id movimiento..." style="width: 100px;">
+                    </div>
+                </div>
+                <div class="form-group margin-right-md ">
+                    <label class="control-label" for="Company">Agencia:</label>
+                    <div class="form-group reqs">
+                        <select class="CompanyFrmAvanzado form-control input-height-xsm padding-no-padding Company" id="Company" name="Company" placeholder="Seleccione ..."> </select>
+                    </div>
+                </div>
+                <div class="form-group margin-right-md ">
+                    <label class="control-label" for="hotel">Cuenta:</label>
+                    <div class="form-group reqs">
+                        <select class="PaymentMethod form-control input-height-xsm padding-no-padding" id="PaymentMethod" name="PaymentMethod" placeholder="Seleccione ..."> </select>
+                    </div>
+                </div>
+                <div class="form-group  margin-top-sm margin-right-md ">
+                    <label class="control-label" for="fondofechaEntrega">Fecha de entrega:</label>
+                    <div class="form-group">
+                        @*<input class="form-control input-height-xsm padding-no-padding datetimeinput" id="fondofechaEntrega" name="fondofechaEntrega" readOnly>*@
+                        <div class="input-group date" id="datetimepicker_1" data-target-input="nearest">
+                            <input class="form-control input-height-xsm padding-no-padding datetimeinput fechaString datetimepicker-input fondofechaEntrega" data-target="#datetimepicker_1" id="fondofechaEntrega" name="fondofechaEntrega">
+                            <div class="input-group-append fechaString" data-target="#datetimepicker_1" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group  margin-top-sm margin-right-md ">
+                    <label class="control-label" for="fondoFechaInicio">Fecha de Inicio:</label>
+                    <div class="form-group">
+                        @*<input class="form-control input-height-xsm padding-no-padding datetimeinput" id="fondoFechaInicio" name="fondoFechaInicio" readOnly>*@
+                        <div class="input-group date" id="datetimepicker_2" data-target-input="nearest">
+                            <input class="form-control input-height-xsm padding-no-padding datetimeinput fechaString datetimepicker-input fondoFechaInicio" data-target="#datetimepicker_2" id="fondoFechaInicio" name="fondoFechaInicio">
+                            <div class="input-group-append fechaString" data-target="#datetimepicker_2" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group  margin-top-sm margin-right-md ">
+                    <label class="control-label" for="fondoFechaFin">Fecha de Fin:</label>
+                    <div class="form-group">
+                        @*<input class="form-control input-height-xsm padding-no-padding datetimeinput" id="fondoFechaFin" name="fondoFechaFin" readOnly>*@
+                        <div class="input-group date" id="datetimepicker_3" data-target-input="nearest">
+                            <input class="form-control input-height-xsm padding-no-padding datetimeinput fechaString datetimepicker-input fondoFechaFin" data-target="#datetimepicker_3" id="fondoFechaFin" name="fondoFechaFin">
+                            <div class="input-group-append fechaString" data-target="#datetimepicker_3" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="form-group margin-top-sm margin-right-md">
+                    <div class="form-group margin-right-md">
+                        <label class="control-label" for="ammountIni">Cargo:</label>
+                        <b>$</b>
+                        <div class="form-group">
+                            <input class="form-control input-height-xsm padding-no-padding _money" data-toggle="tooltip" title="" id="fondoMontoInicio" name="fondoMontoInicio" type="text" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md">
+                        <label class="control-label" for="ammountEnd">hasta</label>
+                        <b>$</b>
+                        <div class="form-group">
+                            <input class="form-control input-height-xsm padding-no-padding _money" data-toggle="tooltip" title="" id="fondoMontoFin" name="fondoMontoFin" type="text" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success btn-sm" id="btnAdvanceSearchFondo" name="btnAdvanceSearchFondo"><span class="glyphicon glyphicon-search"></span> Buscar </button>
+                        </div>
+                        <!-- <div style="font-size:3em; color:Tomato"> -->
+                        @*<i class="resetform fas fa-eraser fa-2x " data-toggle="tooltip" title="Reiniciar búsqueda" value="frmAvanzadaFondos"></i>*@
+                        <div class="form-group ">
+                            <!-- <i class=" fas fa-eraser fa-2x "  title="" value="searchForm" data-original-title="Reiniciar búsqueda"></i> -->
+                            <button type="button" class="resetform btn btn-outline-dark btn-sm margin-left-sm" id="btnAdvanceSearch" name="btnAdvanceSearch" data-toggle="tooltip" value="frmAvanzadaFondos"> <i class="fas fa-redo-alt"></i> Reiniciar búsqueda  </button>
+                        </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<div class="form-font-size-xsm">
+    <div id="jsGridFondos"></div>
+</div>
+
+<!-- Trigger the modal with a button -->
+<!-- Modal 1 - Fondos -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg" id="formItemInfo2">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close btnClosefrm1" data-dismiss="modal">&times;</button> -->
+                <h4 class="modal-title" id="modalTit">Agregar Fondos</h4>
+                <div style="display:contents;">
+                    <div id="" class="form-inline total-label-md" style="display:inline">
+                        <label>Estado actual sin ejercer: $</label> &nbsp;
+                        <label id="balance"></label>
+                    </div> |
+                    <div id="" class="form-inline total-label-md" style="display:inline">
+                        <label>Monto maximo permitido: $</label> &nbsp;
+                        <label id="maxBalance"></label>
+                    </div> |
+                    <div id="" class="form-inline total-label-md" style="display:inline">
+                        <label>al</label> &nbsp;
+                        <label id="fechaSelect"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-left-spacing form-font-size-sm" style="background-color: transparent;">
+                    <form id="frmFondos" name="frmFondos" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                        <div class="row">
+                            <input class="form-control input-height-xsm padding-no-padding" type="hidden" id="id" name="id">
+                            <input class="form-control input-height-xsm padding-no-padding" type="hidden" id="Invoice" name="Invoice">
+                            <input class="form-control input-height-xsm padding-no-padding" type="hidden" id="FinanceType" name="FinanceType" value="@ViewBag.Type">
+                            <div class="col-md-5" style="">
+                                <fieldset style="" class="fieldset-custom">
+                                    <legend align="left" style="" class="legend-custom">Origen</legend>
+                                    @RenderPage("../common/_DependencyCompanyAccountFinancialMethod.cshtml")
+                                </fieldset>
+                            </div>
+                            <div class="col-md-5" style="">
+                                <fieldset style="" class="fieldset-custom">
+                                    <legend align="left" style="" class="legend-custom">Destino</legend>
+                                    @RenderPage("../common/_DependencyCompanyAccount.cshtml")
+                                </fieldset>
+                            </div>
+                            <div class="form-group margin-right-md " style="display:none;">
+                                <label class="control-label" for="hotel">Empresa:</label>
+                                <div class="form-group reqs">
+                                    <select class="SelectHotel Hotel form-control input-height-xsm padding-no-padding" id="Hotel" name="Hotel" placeholder="Seleccione ..."> </select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-right-md " style="display:none;">
+                                <label class="control-label" for="Currency">Moneda:</label>
+                                <div class="form-group reqs">
+                                    <select class="Currency form-control input-height-xsm input-max-width-xsm padding-no-padding" id="Currency" name="Currency" placeholder="Seleccione ..." style="width: 100px;"> </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group  margin-top-sm margin-right-md ">
+                                <label class="control-label" for="fechaEntregaString1">Fecha de entrega:</label>
+                                <div class="form-group reqs">
+                                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                        <input class="form-control input-height-xsm padding-no-padding datetimeinput fechaString datetimepicker-input fechaEntregaString" data-target="#datetimepicker1" id="fechaEntregaString" name="fechaEntregaString">
+                                        <div class="input-group-append fechaString" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group  margin-top-sm margin-right-md ">
+                                <label class="control-label" for="FechaInicioString2">Fecha de Inicio:</label>
+                                <div class="form-group reqs">
+                                    <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                        <input class="form-control input-height-xsm padding-no-padding datetimeinput fechaString datetimepicker-input getfondoFechaFin" data-target="#datetimepicker2" id="FechaInicioString" name="FechaInicioString">
+                                        <div class="input-group-append fechaString" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group  margin-top-sm margin-right-md ">
+                                <label class="control-label" for="FechaFinString3">Fecha de Fin:</label>
+                                <div class="form-group reqs">
+                                    <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                        <input class="form-control input-height-xsm padding-no-padding datetimeinput fechaString datetimepicker-input" data-target="#datetimepicker3" id="FechaFinString" name="FechaFinString">
+                                        <div class="input-group-append fechaString" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label class="control-label" for="FondoFee">Comisión:</label>
+                                <b> $</b>
+                                <div class="form-group">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding _money" style="text-align: right;" id="FondoFee" name="FondoFee" placeholder="0.00" type="text" value="0">
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label class="control-label" for="chargedAmount">Monto:</label>
+                                <b> $</b>
+                                <div class="form-group reqs">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding _money" style="text-align: right;" id="MontoCargo" name="MontoCargo" placeholder="0.00" type="text" onblur="//this.value = minmax(this.value , $('#FondoFee').val(), 0, financialstate.maxBalance)">
+                                </div>
+                            </div>
+
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label for="comentarios">Descripción:</label>
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control input-max-width-lg input-max-height-xsm padding-no-padding" id="comments" name="comments" value="" placeholder="comentarios ..." style="width: 400px;"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row margin-top-sm">
+                    <div class="form-group margin-right-md">
+                        <button type="button" class="btn btn-success btn-sm resetform" id="btnNewFondo" value="frmFondos">Nuevo</button>
+                        <button type="button" class="btn btn-info btn-sm" id="btnCreaFondo" name="btnCreaFondo">Agregar</button>
+                        <button type="button" class="btn btn-secondary btn-sm resetform" id="btnCloseFondo" value="frmFondos">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Trigger the modal with dounble click -->
+<!-- Modal 2 - PagosDetails -->
+<!-- Modal -->
+<div class="modal fade form-font-size-sm" id="paymentsDetails" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close closeModal" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> Pagos </h4>
+            </div>
+            <div class="modal-body">
+                <div style="overflow-y: scroll; overflow-x:scroll;" id="modalPaymentsInformation">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-success btn-sm"  id="btnPrintDetails"> <span class="fas fa-print"></span> Imprimir</button> -->
+                <button type="button" class="btn btn-secondary btn-sm closeModal" data-dismiss="modal" id="btnCloseModalInformation">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal 3 - Delete Fondo -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="delete-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                <h4 class="modal-title" id="myModalLabel">¿ Desea borrar el registro ?</h4>
+                <label class="form-font-size-sm" id="lblDataErase"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="modal-btn-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert" role="alert" id="result"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jsgrid")
+    <!--  <script type="text/javascript" src="~/Scripts/jsgrid-1.5.3/dist/jsgrid.min.js"></script> -->
+    <script type="text/javascript" src="~/Scripts/budget/budget.js"></script>
+    <script type="text/javascript" src="~/Scripts/excelexportjs.js"></script>
+    <script src="~/Scripts/utils/utils.js"></script>
+    <script src="~/Scripts/utils/datetime/datetime.js"></script>
+
+    <script>
+
+        $("._money").ForceNumericOnly();
+
+        if ($("#FinanceType").val() != "") {
+            $("#btnAddModal").text("Captura Financiamiento")
+            $("#spTitle").text("Financiamientos")
+            $("#modalTit").text("Agregar Financiamiento")
+        } else {
+            $("#btnAddModal").text("Captura movimiento")
+            $("#spTitle").text("Movimientos")
+            $("#modalTit").text("Agregar Fondos")
+
+        }
+        /* $("#fondoMontoInicio").ForceNumericOnly();
+        $("#fondoMontoFin").ForceNumericOnly();
+        $("#MontoCargo").ForceNumericOnly(); */
+
+        $(".CompanyDependecyPayment").on('change', function (e) {
+
+            var form = this.form;
+            var child = this.getAttribute("tochild");
+            //if (frmFondo[0].id.value == "")
+            loadDataNotDependency(PrepareRequestGetBankAccountbyCompanyUserBanAccount(this.value, formControl.BankAccountByCompany ), null, form.name, child, true);
+
+        });
+
+        $(".CompanyDependecyFinancial").on('change', function (e) {
+
+            var form = this.form;
+            var child = this.getAttribute("tochild");
+            //if (frmFondo[0].id.value == "")
+            loadDataNotDependency(PrepareRequestGetBankAccountbyCompanyUserBanAccount(this.value, formControl.BankAccountByCompany), null, form.name, child);
+
+        });
+    </script>
+
+}

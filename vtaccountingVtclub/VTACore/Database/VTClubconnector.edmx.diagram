@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fbb049519d384e10a29bd3ae4d706b02" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="vtclubdbModel.tblmemberships" Width="1.5" PointX="0.75" PointY="61.875" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblaccl4paymenmethods" Width="1.5" PointX="6" PointY="47.875" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblaccountl4accounttype" Width="1.5" PointX="11" PointY="52.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblaccountsl1" Width="1.5" PointX="1.5" PointY="45.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblaccountsl2" Width="1.5" PointX="1.5" PointY="49.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblaccountsl3" Width="1.5" PointX="1.5" PointY="53" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblaccountsl4" Width="1.5" PointX="3.75" PointY="52.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblaccounttypereport" Width="1.5" PointX="8.75" PointY="47.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblattachments" Width="1.5" PointX="8.25" PointY="96.625" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbaccounprodttype" Width="1.5" PointX="10.5" PointY="71.875" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbaccounttpv" Width="1.5" PointX="16.5" PointY="65.875" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbank" Width="1.5" PointX="6" PointY="74.625" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankaccntclasification" Width="1.5" PointX="6" PointY="77.625" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankaccount" Width="1.5" PointX="8.25" PointY="66.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankaccountsourcedata" Width="1.5" PointX="16.5" PointY="70" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankaccountsourcedatatypes" Width="1.5" PointX="18.75" PointY="70.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankprodttype" Width="1.5" PointX="14.25" PointY="75.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstateincome" Width="1.5" PointX="18.75" PointY="73.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstatementmethod" Width="1.5" PointX="11.25" PointY="55.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstatements" Width="1.5" PointX="13.5" PointY="64.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstatements2Log" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstatementsdet" Width="1.5" PointX="18.75" PointY="64.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstatementsgap" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstatementsLog" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstateparentreserv" Width="1.5" PointX="15.75" PointY="82.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstatepurchase" Width="1.5" PointX="15.75" PointY="62.875" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstatereserv" Width="1.5" PointX="15.75" PointY="79.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbugettype" Width="1.5" PointX="11.25" PointY="111.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblcompanies" Width="1.5" PointX="6" PointY="61.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblcompaniescurrencies" Width="1.5" PointX="8.25" PointY="53.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblcompaniesuppliers" Width="1.5" PointX="8.25" PointY="84.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblcompanydevelopment" Width="1.5" PointX="8.25" PointY="77.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblcompanygroupdevelopment" Width="1.5" PointX="8.25" PointY="86.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblconciliationsegmentaccl4fee" Width="1.5" PointX="6" PointY="57.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblcurrencyexchange" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tbldeposittypes" Width="1.5" PointX="9" PointY="56.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblexpensereportsourcedata" Width="1.5" PointX="8.25" PointY="60" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblexpensereportsourcedatatypes" Width="1.5" PointX="10.5" PointY="59.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblexternalgroup" Width="1.5" PointX="6" PointY="71.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblextgroupcompanies" Width="1.5" PointX="8.25" PointY="63.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblfinancetype" Width="1.5" PointX="11.25" PointY="84.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblfondos" Width="1.5" PointX="13.5" PointY="70.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblfondosLog" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblfondosmaxammount" Width="1.5" PointX="10.5" PointY="76.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblfondosmaxammountLog" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblincome" Width="1.5" PointX="8.25" PointY="79.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblincomeattach" Width="1.5" PointX="10.5" PointY="79.875" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblincomecomments" Width="1.5" PointX="10.5" PointY="88.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblincomeitem" Width="1.5" PointX="13.5" PointY="80" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblincomeitemLog" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblincomeLog" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblincomemovement" Width="1.5" PointX="16.5" PointY="73.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblinvoice" Width="1.5" PointX="8.25" PointY="91.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblinvoiceattach" Width="1.5" PointX="10.5" PointY="91.625" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblinvoicecomments" Width="1.5" PointX="10.5" PointY="102.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblinvoiceditem" Width="1.5" PointX="13.5" PointY="90.625" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblinvoiceditemLog" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblinvoiceitemstatus" Width="1.5" PointX="11.25" PointY="96.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblinvoiceLog" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblparameters" Width="1.5" PointX="6.75" PointY="11.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblpayment" Width="1.5" PointX="13.5" PointY="84.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblpaymentLog" Width="1.5" PointX="8.75" PointY="11.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblpermissions" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblprofaccclass3" Width="1.5" PointX="3.75" PointY="49.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblprofilesaccounts" Width="1.5" PointX="1.5" PointY="42.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblsegment" Width="1.5" PointX="3.75" PointY="57.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblsegmentaccl4" Width="1.5" PointX="6" PointY="54.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblsourcedata" Width="1.5" PointX="6" PointY="68.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tbltpv" Width="1.5" PointX="11.25" PointY="62.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tbluseraccl4" Width="1.5" PointX="6" PointY="51.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tbluserbacount" Width="1.5" PointX="10.5" PointY="107.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblusercompanies" Width="1.5" PointX="8.25" PointY="74.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tbluserpermissions" Width="1.5" PointX="3" PointY="2" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblaccl4paymenmethods_tblaccountsl4_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblaccountl4accounttype_tblaccountsl4" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblaccountl4accounttype_tblaccounttypereport" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblaccountsl2_tblaccountsl1_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblaccountsl3_tblaccountsl2_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblprofaccsclass3_tblaccountsl3" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblaccountsl4_tblaccountsl3_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblconciliationsegmentaccl4fee_tblaccountsl4_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincomeitem_tblaccountsl4_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblsegmentaccl4_tblaccountsl4_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tbluseraccl4_tblaccountsl4_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblinvoiceditem_tblaccountsl4_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblincomeattach_tblattachments_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblpayattach_tblattachments_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbaccounttype_tblbaccounprodttype" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankprodttype_tblbankprodttype" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbaccounttpv_tblbankaccount_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbaccounttpv_tbltpv_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankaccount_tblbank_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankaccount_tblbankaccntclasification" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankaccount_tblcompanies_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankaccountsourcedata_tblbankaccount" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatements_tblbankaccount_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblfondos_tblbankaccount_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblfondos_tblbankaccount_2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblfondosmaxammount_tblbankaccount" />
+        <AssociationConnector Association="vtclubdbModel.FK_tbluserbacount_tblbankaccount" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_IncomeMovement_tblbankaccount_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblpayment_tblbankaccount_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankaccountsourcedata_tblsourcedata" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankaccountsourcedatatypes_tblbankaccountsourcedata" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_IncomeMovement_tblbaccounprodttype_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblpayment_idBankAccontProdType_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstateincome_tblbankstatements_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstateincome_tblincomemovement_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatementmethod_tblbankstatementmethod_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatements_tblcompany_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatements_tbltpv_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstatementsdet_tblbankstatements" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstateparentreserv_tblbankstatements_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatepurchase_tblbankstatements_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatereserv_tblbankstatements_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstatementsdet_tbltpv" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblinvoiceditem_tblbugettype" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblcompanies_tblsegment" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblcompanydevelopment_tblcompanies_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblcompanygroupdevelopment_tblcompanies_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblcompanygroupdevelopment_tblcompanies_2" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblcompinessupplier_tblcompanies_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblexpensereportsourcedata_tblcompanies_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblextgroupcompanies_tblcompanies_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincome_tblcompanies_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tbltpv_tblcompanies" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblcompaniescurrencies_tblcurrencies_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblinvoice_tblcompanies_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblusercompanies_tblcompanies_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblconciliationsegmentaccl4fee_tblsegment_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tbltpv_tbldeposittypes" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblexpensereportsourcedata_tblsourcedata_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblexpensereportsourcedatatypes_tblexpensereportsourcedata_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblextgroupcompanies_tblexternalgroup_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblfondos_tblfinancetype_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincomeComments_tblincome" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincomeitem_tblincome_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblincomeattach_tblincome_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblincomemovement_tblincome_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblincomeitem_tblinvoiceitemstatus_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincomemovement_tbltpv" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblinvoiceComments_tblinvoice" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblinvoiceattach_tblinvoice_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblinvoiceditem_tblinvoice_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblpayment_tblinvoice_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblinvoiceditem_tblinvoiceitemstatus_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tbluserpermissions_tblpermissions_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblprofaccsclass3_tblprofilesaccounts" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblsegmentaccl4_tblsegment_1" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblcurrencies" Width="1.5" PointX="5" PointY="72.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblhotelchains" Width="1.5" PointX="19" PointY="85.625" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblmembers" Width="1.5" PointX="21.25" PointY="76.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblpartners" Width="1.5" PointX="21.25" PointY="85.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblPaymentForms" Width="1.5" PointX="5.75" PointY="44.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblpaymentspurchases" Width="1.5" PointX="25.75" PointY="74.5" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblprefixes" Width="1.5" PointX="13.375" PointY="11.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblpurchases" Width="1.5" PointX="23.5" PointY="74.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblpurchasescancellation" Width="1.5" PointX="28.75" PointY="74.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblreservations" Width="1.5" PointX="23.5" PointY="59.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblreservationsparent" Width="1.5" PointX="20.25" PointY="51.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblreservationsparentpayment" Width="1.5" PointX="22.5" PointY="54.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblreservationspayment" Width="1.5" PointX="25.75" PointY="64.25" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblSuppliers" Width="1.5" PointX="8" PointY="88.875" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblusers" Width="1.5" PointX="0.75" PointY="53" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblreservationsparentcancellation" Width="1.5" PointX="26.5" PointY="60.125" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankaccount_tblcurrencies_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincome_tblccurrency_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblpaymentspurchases_tblcurrencies" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblpurchasescancellation_tblcurrencies" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparent_tblcurrencies" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparentcancellation_tblcurrencies" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblcompaniescurrencies_tblcurrencies_2" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblinvoice_tblcurrency_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblcompanydevelopment_tblhotelchains_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblpartners_tblhotelchains" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblmembers_tblmemberships" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservations_tblmembers" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblpurchases_tblmemberships" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservations_tblmemberships" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblpurchases_tblpartners" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblreservations_tblpartners_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblaccl4paymenmethods_tblPaymentForms_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservations_tblpaymentforms" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservations_tblPaymentForms1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservations_tblPaymentForms2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparent_tblPaymentForms" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparent_tblPaymentForms2_supplierPayment" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparent_tblPaymentForms3_memberPayment" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparent_tblPaymentForms4_memberCharge" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatepurchase_tblpaymentspurchases_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblpaymentspurchases_tblpurchases" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblpurchasescancellation_tblpurchases" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservations_tblSuppliers" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservations_tbltpv" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservations_tblUsers" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationspayment_tblreservations" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparent_tblSuppliers" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparent_tblusers" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparentcancellation_tblreservationsparent" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationsparentpayment_tblreservationsparent" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatepurchase_tblreservationsparentpayment_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatereserv_tblreservationspayment_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblcompaniessupplier_tblsupplier_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblinvoiceitem_tblsupplier_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbaccounttpv_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbaccounttpv_tblusers_2" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankaccount_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankaccount_tblusers_2" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblfondos_tbluser_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblfondosmaxammount_tbluser_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincome_tblusers" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincome_tblusers2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincomeComments_tblusers" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblincomeitem_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblinvoice_tblusers" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblinvoice_tblusers2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblinvoiceComments_tblusers" />
+        <AssociationConnector Association="vtclubdbModel.fk_tbluseraccl4_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tbluserbacount_tblusers" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblincomeattach_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblinvoiceattach_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblinvoiceditem_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblusercompanies_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tbluserpermissions_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_VTA_tblusers_tblprofilesaccounts_1" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblincomemovementLog" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblparameters1" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblreservationcancellation" Width="1.5" PointX="25.75" PointY="69.25" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationcancellation_tblcurrencies" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblreservationcancellation_tblreservations" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbstaterrors" Width="1.5" PointX="3" PointY="61" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblerroraction" Width="1.5" PointX="0.75" PointY="67.125" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblerrorseverity" Width="1.5" PointX="0.75" PointY="69.5" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbstaterrors_tblusers" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbstaterrors_tblerroraction" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbstaterrors_tblerrorseverity" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstat2fondo" Width="1.5" PointX="15.75" PointY="59.625" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstat2invoice" Width="1.5" PointX="18.75" PointY="79.875" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstat2parentreserv" Width="1.5" PointX="25.75" PointY="56.625" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstat2purchase" Width="1.5" PointX="28" PointY="66.625" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstat2reserv" Width="1.5" PointX="29" PointY="61.375" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblmovementtype" Width="1.5" PointX="11.25" PointY="43.875" />
+        <EntityTypeShape EntityType="vtclubdbModel.tbloperationtype" Width="1.5" PointX="9" PointY="44.125" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2purchase_tblpaymentspurchases" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2parentreserv_tblreservationsparentpayment" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2reserv_tblreservationspayment" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2fondo_tblfondos" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2invoice_tblpayment" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblmovementtype_tbloperationtype" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstat2income" Width="1.5" PointX="18.75" PointY="76.625" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2income_tblincomemovement" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbatchdetail" Width="1.5" PointX="28.75" PointY="78.75" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbatchdetailpre" Width="1.5" PointX="23.5" PointY="48" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbatchdetail_tblpurchases" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbatchdetailpre_tblpartners" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbatchdetailpre_tblprefixes" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbatch" Width="1.5" PointX="10.5" PointY="38.75" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbatch_tblbankaccount" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbatchdetail_tblbatch" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbatchdetailpre_tblbatch" />
+        <EntityTypeShape EntityType="vtclubdbModel.tblbankstatements2" Width="1.5" PointX="13.5" PointY="55.5" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatements2_tblusers_1" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatements2_tblusers_2" />
+        <AssociationConnector Association="vtclubdbModel.fk_tblbankstatements2_tblbankaccount_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2fondo_tblbankstatements2_1" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2fondo_tblbankstatements2_2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2income_tblbankstatements2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2invoice_tblbankstatements2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2parentreserv_tblbankstatements2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2purchase_tblbankstatements2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstat2reserv_tblbankstatements2" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstatements2_tblbankstatementmethod" />
+        <AssociationConnector Association="vtclubdbModel.FK_tblbankstatements2_tblmovementtype_1" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

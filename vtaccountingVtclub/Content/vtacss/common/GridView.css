@@ -1,0 +1,50 @@
+﻿#gridView {
+    width: 80%;
+    border:1px;
+}
+
+    #gridView thead {
+        background-color:#808080;
+    }
+        #gridView thead tr {
+            height: 30px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+    #gridView > tbody > tr:nth-child(odd) > th {
+        background-color: #ff0;
+    }
+
+    #gridView > tbody > tr:nth-child(even) > td,
+    #gridView > tbody > tr:nth-child(even) > th {
+        background-color: #ccc;
+    }
+
+
+.rTable {
+    display: inline-block;
+    width: 50%;
+}
+
+.rTableRow {
+    display: table-row;
+}
+
+.rTableHeading {
+    display: table-header-group;
+}
+
+.rTableBody {
+    display: table-row-group;
+
+}
+
+.rTableFoot {
+    display: table-footer-group;
+}
+
+.rTableCell, .rTableHead {
+    display: table-cell;
+    padding:8px;
+}

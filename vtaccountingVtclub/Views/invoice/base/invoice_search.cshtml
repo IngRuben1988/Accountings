@@ -1,0 +1,115 @@
+﻿<style>
+    .tseeDocstooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+    }
+
+    .seeDocstooltip .seeDocstooltiptext {
+        visibility: hidden;
+        width: auto;
+        /* width: 120px; */
+        background-color: black;
+        color: #fff;
+        /* text-align: center; */
+        text-align: left;
+        border-radius: 6px;
+        padding: 5px 0;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .seeDocstooltip:hover .seeDocstooltiptext {
+        visibility: visible;
+    }
+</style>
+<br />
+<div class="custom_page_title"> Detalle Factura </div>
+<div class="workingSearch">
+    <div class="form-inline ">
+        <div class="row">
+            <div class="form-group">
+                <span class="fa fa-plus-circle " data-toggle="collapse" data-target="#formTargetDiv" title=""><label class="control-label form-font-size-sm">&nbsp; Búsqueda avanzada</label></span>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="form-font-size-sm">
+        <div class="form-left-spacing ">
+            <!--search controller-->
+            <form id="searchForm" name="searchForm" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                <div class="row">
+                    <div class="form-group margin-right-md" style="display:none">
+                        <label class="control-label" for="id">Id</label>
+                        <div class="form-group">
+                            <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="id" name="id" placeholder="Ingrese id..." style="width: 100px;">
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md">
+                        <label class="control-label" for="id">Número documento:</label>
+                        <div class="form-group">
+                            <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="InvoiceNumber" name="InvoiceNumber" placeholder="Ingrese id..." style="width: 100px;">
+                        </div>
+                    </div>
+                    <div class="form-group margin-right-md ">
+                        <label class="control-label" for="company">Unidad de negocio:</label>
+                        <div class="form-group reqs">
+                            <select class="form-control input-height-xsm padding-no-padding Company" id="company" name="company"> </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="formTargetDiv">
+                    <div class="row margin-top-sm">
+                        <div class="col-md-5" style="">
+                            <fieldset style="" class="fieldset-custom">
+                                <legend align="left" style="" class="legend-custom">Costo gasto </legend>
+                                <div class="form-group margin-right-md">
+                                    <label class="control-label" for="ammountIni">De:</label>
+                                    <b>$</b>
+                                    <div class="form-group">
+                                        <input class="form-control input-height-xsm padding-no-padding" data-toggle=" " title="Aplica para el monto de documento gasto" id="ammountIni" name="ammountIni" type="text" placeholder="0.00">
+                                    </div>
+                                </div>
+                                <div class="form-group margin-right-md">
+                                    <label class="control-label" for="ammountEnd">hasta:</label>
+                                    <b>$</b>
+                                    <div class="form-group">
+                                        <input class="form-control input-height-xsm padding-no-padding" data-toggle=" " title="Aplica para el monto de documento gasto" id="ammountEnd" name="ammountEnd" type="text" placeholder="0.00">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row margin-top-sm">
+                        <div class="col-md-5" style="">
+                            @*@RenderPage("~/common/_documentAplicationDateFieldSet.cshtml")*@
+                        </div>
+                    </div>
+                    <div class="row margin-top-sm">
+                        <div class="col-md-5" style="">
+                            @*@RenderPage("~/common/_documentCreationDateFieldSet.cshtml")*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margin-top-sm margin-right-md">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success btn-sm" id="btnAdvanceSearch" name="btnAdvanceSearch"><span class="glyphicon glyphicon-search"></span> Buscar </button>
+                        </div>
+                        <div class="form-group margin-top-sm margin-right-md">
+                            <i class="resetform fas fa-eraser fa-2x " data-toggle="tooltip" title="" value="searchForm" data-original-title="Reiniciar búsqueda"></i>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!--end search controller-->
+        </div>
+
+    </div>
+
+    <br>
+    <div class="form-font-size-sm">
+
+    </div>
+</div>

@@ -1,0 +1,330 @@
+﻿<!-- Trigger the modal with a button -->
+<!-- Modal 1 - Conceptos -->
+<div class="modal fade" id="myModal" role="dialog" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg" id="formItemInfo">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Agregar conceptos</h4>
+                <button type="button" class="close btnClosefrm1" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-left-spacing form-font-size-sm container" style="background-color: transparent;">
+                    <form id="invoiceitemForm" name="invoiceitemForm" role="form" data-toggle="validator" method="post" class="form-inline bs-component">
+                        <!-- 1 -->
+                        <div class="row">
+                            <div class="form-group margin-right-md " style="display:none">
+                                <label class="control-label" for="document">documento:</label>
+                                <div class="form-group">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" style="text-align: right;" id="document" name="document" type="text" value="0">
+                                </div>
+                            </div>
+                            <div class="form-group margin-right-md " style="display:none">
+                                <label class="control-label" for="Item">Item:</label>
+                                <div class="form-group">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" style="text-align: right;" id="Item" name="Item" type="text" value="0">
+                                </div>
+                            </div>
+                            <!-- codigo de prueba///-->
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="accountl1">Clasificación:</label>
+                                <div class="form-group">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding accountl1" id="accountl1" name="accountl1" placeholder="Seleccione ..."></select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="accountl2">Cuenta:</label>
+                                <div class="form-group">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding accountl2" id="accountl2" name="accountl2" placeholder="Seleccione ...">
+                                        <option value="0">Seleccione ...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- ///codigo de prueba-->
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="category">Categoria:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding category" id="category" name="category" placeholder="Seleccione ..."></select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="Type">Tipo:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding Type" id="Type" name="accountl4" placeholder="Seleccione ...">
+                                        <option value="0">Seleccione ...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 2 -->
+                        <div class="row">
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <div class="" style="background-color:transparent; display:flex" id="_checks">
+                                    <div class="form-check">
+                                        <input class="form-check-input taxes" type="radio" name="isTax" id="Tax1" value="true">
+                                        <label class="form-check-label" for="Tax1">
+                                            Fiscal
+                                        </label>
+                                    </div> &nbsp;
+                                    <div class="form-check">
+                                        <input class="form-check-input taxes" type="radio" name="isTax" id="Tax2" value="false" checked>
+                                        <label class="form-check-label" for="Tax2">
+                                            No Fiscal
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label class="control-label" for="Amount">Subtotal:</label>
+                                <div class="form-group reqs">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding Ammount calcTotal" style="text-align: right;" id="Ammount" name="Ammount" placeholder="0.00" type="text" value="0">
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md taxesAmmount hide">
+                                <label class="control-label" for="taxesAmmount">IVA:</label>
+                                <div class="form-group">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding taxesAmmount calcTotal" style="text-align: right;" id="taxesAmmount" name="taxesAmmount" placeholder="0.00" type="text" value="0">
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md taxesAmmount hide">
+                                <label class="control-label" for="OthertaxesAmmount">Otros :</label>
+                                <div class="form-group">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding OthertaxesAmmount calcTotal" style="text-align: right;" id="OthertaxesAmmount" name="OthertaxesAmmount" placeholder="0.00" type="text" value="0">
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label class="control-label" for="">Total:</label>
+                                <label class="control-label taxesAmmountTotalBill" for="taxesAmmountTotalBill" id="taxesAmmountTotalBill" name="taxesAmmountTotalBill"></label>
+                            </div>
+
+                        </div>
+                        <!-- 3 -->
+                        <div class="row">
+                            <div class="form-group margin-top-sm margin-right-md billIdentifier hide">
+                                <label class="control-label" for="billIdentifier"># Factura:</label>
+                                <div class="form-group">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding billIdentifier" style="text-align: right;" id="billIdentifier" name="billIdentifier" placeholder="#Factura" type="text" value="">
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="supplier">Proveedor:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding supplier" id="supplier" name="supplier" placeholder="Seleccione ..."> </select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="budgetType">Tipo de presupuesto:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding budgetType" id="budgetType" name="budgetType" placeholder="Seleccione ..."> </select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md supplierOther hide">
+                                <label class="control-label" for="billIdentifier">Nombre:</label>
+                                <div class="form-group">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding supplierOther" style="text-align: right;" id="supplierOther" name="supplierOther" placeholder="Nombre de proveedor" type="text" value="">
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="singleExibitionPayment">Pago en una sola exibición:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding singleExibitionPayment" id="singleExibitionPayment" name="singleExibitionPayment" placeholder="Seleccione ...">
+                                        <option value="true">SI</option>
+                                        <option value="false">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <div class="form-group reqs">
+                                    <label for="description">Descripción:</label>
+                                    <div class="form-group">
+                                        <textarea type="text" class="form-control input-max-width-sm input-max-height-xsm padding-no-padding" style="width:200px !important;" id="description" name="description" value="" placeholder=""> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 4 -->
+                        <div>
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <button type="button" class="btn btn-secondary btn-sm" id="btnAddDocItem" name="btnAddDocItem"><span class="glyphicon glyphicon-floppy-save"></span> Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- FORM PAGOS -->
+                <div class="form-left-spacing form-font-size-sm margin-top-sm" style="background-color: transparent; display:none;">
+                    <div class="" style="display: grid;">
+                        <button data-toggle="collapse" data-target="#popupFrmPayment0" class="custom-blank_button"> <span type="button" class="glyphicon glyphicon-tags" style=""></span>&nbsp; Pagar</button>
+                    </div>
+                    <div class="row">
+                        <div id="popup2" class="">
+                            <div id="popupFrmPayment0" class="collapse form-inline">
+                                <div>
+                                    <h4 class="modal-title">Agregar movimiento</h4>
+                                </div>
+                                <div>
+                                    <div id="" class="form-inline total-label-md">
+                                        <label>Resta por pagar gastos:</label> &nbsp;<label> $</label>
+                                        <label id="remaingPay" class="remaingPay"></label>
+                                    </div>
+                                    <div id="" class="form-inline total-label-md">
+                                        <label id="remaingBudgetName" class="remaingBudgetName"> Saldo :</label>&nbsp; <label>$</label>
+                                        <label id="remaingBudget" class="remaingBudget"></label>
+                                    </div>
+                                </div>
+                                <div class="margin-left-md">
+                                    <form id="docPaymentsForm0" name="docPaymentsForm0" role="form" data-toggle="validator" method="post" class="form-inline bs-component docPaymentsForm">
+                                        <div class="row">
+                                            <div class="form-group margin-right-md " style="display:none">
+                                                <label class="control-label" for="CurrencyPay">Moneda:</label>
+                                                <div class="form-group reqs">
+                                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="CurrencyPay" name="CurrencyPay" placeholder="Seleccione ..." style="width: 100px;"> </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group margin-right-md">
+                                                <label class="control-label" for="chargedAmount">Pago:</label>
+                                                <b>$</b>
+                                                <div class="form-group reqs">
+                                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding chargedAmount" style="text-align: right;" id="chargedAmount" name="chargedAmount" placeholder="0.00" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group margin-right-md">
+                                                <div class="form-group reqs">
+                                                    <label for="description">Descripción:</label>
+                                                    <div class="form-group">
+                                                        <textarea type="text" class="form-control input-max-width-sm input-max-height-xsm padding-no-padding" style="width:200px !important;" id="authRef" name="authRef" value="" placeholder=""> </textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group margin-right-md ">
+                                                <label class="control-label" for="BAClass">Clasificación:</label>
+                                                <div class="form-group ">
+                                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding BAClass0" id="BAClass" name="BAClass" placeholder="Seleccione ...">
+                                                        <option value="0">Seleccione ...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group margin-right-md ">
+                                                <label class="control-label" for="BankAccntType">Método de Pago:</label>
+                                                <div class="form-group reqs">
+                                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding BankAccntType0" id="BankAccntType" name="BankAccntType" placeholder="Seleccione ...">
+                                                        <option value="0">Seleccione ...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group margin-right-md ">
+                                                <label class="control-label" for="PaymentMethod">Cuenta:</label>
+                                                <div class="form-group reqs">
+                                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding PaymentMethod0" id="PaymentMethod" name="PaymentMethod" onchange="calculateBudget(this);" placeholder="Seleccione ...">
+                                                        <option value="0">Seleccione ...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="display:inline">
+                                            <div class="form-group margin-top-sm margin-right-md">
+                                                <button type="button" class="btn btn-secondary btn-sm btnAddDocPayment" id="btnAddDocPayment" name="btnAddDocPayment"><span class="glyphicon glyphicon-floppy-save"></span> Guardar Pago </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default btn-sm" id="btnAddDocItem" name="btnAddDocItem">Añadir</button> -->
+                <!-- <button type="button" class="btn btn-info btn-sm btnClosefrm1" data-dismiss="modal" id="">Cerrar</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Trigger the modal with a button -->
+<!-- Modal 2 - Pagos -->
+<div class="modal fade" id="myModal2" role="dialog" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg" id="formItemInfo2">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Agregar Movimientos</h4>
+                <button type="button" class="close btnClosefrm1" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div id="" class="form-inline total-label-md">
+                        <label>Resta por pagar gastos:</label> &nbsp;<label> $</label>
+                        <label id="remaingPay" class="remaingPay"></label>
+                    </div>
+                    <div id="" class="form-inline total-label-md">
+                        <label id="remaingBudgetName" class="remaingBudgetName"> Saldo :</label>&nbsp; <label>$</label>
+                        <label id="remaingBudget" class="remaingBudget"></label>
+                    </div>
+                </div>
+                <div class="form-left-spacing form-font-size-sm container" style="background-color: transparent;">
+                    <form id="docPaymentsForm" name="docPaymentsForm" role="form" data-toggle="validator" method="post" class="form-inline bs-component docPaymentsForm">
+                        <div class="row">
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <label class="control-label" for="chargedAmount">Pago:</label>
+                                <b>$</b>
+                                <div class="form-group reqs">
+                                    <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding chargedAmount" style="text-align: right;" id="chargedAmount" name="chargedAmount" placeholder="0.00" type="text" required>
+                                </div>
+                            </div>
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <div class="form-group reqs">
+                                    <label for="description">Descripción:</label>
+                                    <div class="form-group">
+                                        <textarea type="text" class="form-control input-max-width-sm input-max-height-xsm padding-no-padding" style="width:200px !important;" id="authRef" name="authRef" value="" placeholder="" required> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="form-group margin-right-md ">
+                                <label class="control-label" for="BAClass">Clasificación:</label>
+                                <div class="form-group ">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding BAClass" id="BAClass" name="BAClass" placeholder="Seleccione ...">
+                                        <option value="0">Seleccione ...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group margin-right-md ">
+                                <label class="control-label" for="BankAccntType">Método de Pago:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding BankAccntType" id="BankAccntType" name="BankAccntType" placeholder="Seleccione ...">
+                                        <option value="0">Seleccione ...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group margin-top-sm margin-right-md ">
+                                <label class="control-label" for="PaymentMethod">Cuenta:</label>
+                                <div class="form-group reqs">
+                                    <select class="form-control input-height-xsm input-max-width-xsm padding-no-padding PaymentMethod" id="PaymentMethod" name="PaymentMethod" onchange="calculateBudget(this);" placeholder="Seleccione ..." required>
+                                        <option value="0">Seleccione ...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:inline">
+                            <div class="form-group margin-top-sm margin-right-md">
+                                <button type="button" class="btn btn-secondary btn-sm btnAddDocPayment" id="btnAddDocPayment" name="btnAddDocPayment"><span class="glyphicon glyphicon-floppy-save"></span>Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-info btn-sm btnClosefrm1" data-dismiss="modal" id="">Cerrar</button> -->
+            </div>
+        </div>
+    </div>
+</div>

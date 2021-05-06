@@ -1,0 +1,272 @@
+﻿@{
+    ViewBag.Title = "Configuración usuarios";
+}
+<style>
+    Secret {
+        display:none;
+    }
+
+    #tblAllUsers {
+        /*position: absolute;
+        left: 10%;
+        right: 10%;*/
+    }
+    #ctrlBusqueda {
+        /*position: absolute;
+        left: 10%;
+        right: 10%;*/
+    }
+    a, a:hover {
+        color: #333
+    }
+
+    .changepass {
+        width: 30px!important;
+        height: 27px;
+        margin: 0px 0 0 0;
+        border: 1px solid #adb5bd;
+        /* border-left: 0px; */
+        /* border-right: 5px; */
+        border-radius: 1px 4px 4px 1px;
+        background: #e9ecef;
+    }
+    
+</style>
+<div>
+    <div class="custom_page_title"> Configuración de usuarios </div>
+
+    <!-- Begin SearchGral User-->
+    <div id="divSearchGral">
+        <div id="ctrlBusqueda" class="PanelSearch form-font-size-sm">
+            <center>
+                <div class="rTable" id="formTargetDiv">
+                    <form id="frmAvanzadaUser" class="rTableRow" name="frmAvanzadaUser" role="form" data-toggle="validator" method="post">
+
+                        <div class="rTableCell">
+                            <label class="control-label" for="idUser">
+                                Identificador:<br />
+                                <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="idUser" name="idUser" placeholder="Ingrese id usuario..." style="width: 100px;">
+                            </label>
+                        </div>
+
+                        <div class="rTableCell">
+                            <label class="control-label" for="userName">
+                                Nombre de  usuario: <br />
+                                <input class="form-control input-height-xsm input-max-width-xsm padding-no-padding" id="userName" name="userName" placeholder="Ingrese nombre de usuario..." style="width: 150px;">
+                            </label>
+                        </div>
+
+                        <div class="rTableCell">
+                            <button type="button" class="btn btn-success btn-sm" id="btnAdvanceSearch" name="btnAdvanceSearch">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <i class="resetform fas fa-search fa-2x " data-toggle="tooltip" title="Reiniciar búsqueda" value="frmAvanzadaUser"></i>
+                            </button>
+                        </div>
+
+                        <div class="rTableCell">
+                            <button type="button" class="resetform btn btn-outline-dark btn-sm " id="btnAdvanceSearch" name="btnAdvanceSearch" data-toggle="tooltip" value="frmAvanzadaUser"> <i class="fas fa-redo-alt"></i> Reiniciar búsqueda  </button>
+                        </div>
+
+                    </form>
+                </div>
+            </center>
+            <div id="infoUsuarios" class="userScroll">
+                @RenderPage("../common/_GridView.cshtml")
+            </div>
+        </div>
+    </div>
+    <!-- End SearchGral User-->
+
+    <div id="divUsetoWork" class="" style="display:none">
+        <div id="infoUser" class="form-font-size-sm" style="display:block;">
+            <div class="card">
+                <div class="card-header">
+                    <input type="hidden" id="hdfUserid"> <b> INFORMACI&#xD3;N DE USUARIO </b>&#xA0; | &#xA0; <b> <label id="nombreUsuario" name="nombreUsuario"></label> </b>
+                    <span class="glyphicon glyphicon-eye-open " data-toggle="collapse" data-target="#formTargetDiv2"
+                          style="float:right"></span>
+                </div>
+                <div class="card-body">
+                    <div class="col-lg-4" style="background-color:transparent">
+                        <div class="form-left-spacing" id="formTargetDiv2">
+                            <form id="formUser" name="formUser" role="form" data-toggle="validator"
+                                  method="post" class="form-inline bs-component">
+                                <div class="row">
+                                    <div>
+                                        <div class="row">
+                                            <div class="margin-top-sm margin-left-md userprofiles">
+                                                <label class="col-form-label" for="Users">Nombre del Usuario:</label>
+                                                <div class="reqs">
+                                                    <select class="form-control input-height-xsm padding-no-padding Users"
+                                                            id="idUser" name="idUser" placeholder="Seleccione ..."></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="margin-top-sm margin-left-md userprofiles">
+                                                <label class="col-form-label" for="ProfileAccount">Perfil:</label>
+                                                <div class="reqs">
+                                                    <select class="form-control input-height-xsm padding-no-padding ProfileAccount"
+                                                            id="idProfileAccount" name="idProfileAccount" placeholder="Seleccione ..."></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="margin-top-sm margin-left-md confirmpassword">
+                                                <label class="col-form-label" for="password">Contraseña:</label>
+                                                <div class="input-group reqs show_hide_password" id="show_hide_password">
+                                                    <input type="text" class="form-control input-height-xsm padding-no-padding password"
+                                                           id="password" name="password" />
+                                                    <div class="input-group-addon">
+                                                        <a href=""><i class="fa fa-eye-slash changepass" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="margin-top-sm margin-left-md confirmpassword">
+                                                <label class="col-form-label" for="passwordconfirm">Confirmar Contraseña:</label>
+                                                <div class="input-group reqs show_hide_password" >
+                                                    <input type="password" class="form-control input-height-xsm padding-no-padding passwordconfirm"
+                                                           id="passwordconfirm" name="passwordconfirm" />
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="btn float-right form-font-size-sm-a margin-left-lg margin-top-lg">
+                                        <button type="button" class="btn btn-info btn-sm save" id="btnSaveUser"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div id="exTab1" class="">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a href="#empresas" data-toggle="tab" role="tab" class="nav-link active" aria-selected="true">EMPRESAS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#cuentas" data-toggle="tab" role="tab" class="nav-link">CUENTAS BANCARIAS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#permisos" data-toggle="tab" role="tab" class="nav-link">PERMISOS DE USUARIO</a>
+                </li>
+            </ul>
+            <div class="tab-content clearfix">
+                <div class="tab-pane in active" role="tabpanel" id="empresas">
+                    <div id="infoCompany" class="form-font-size-sm" style="display:block;color: black;">
+                        <div class="card">
+                            <div class="card-header">
+                                <b>  </b>
+                                <span class="glyphicon glyphicon-eye-open " data-toggle="collapse"
+                                      data-target="#formTargetDiv3" style="float:right"></span>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-lg-12" style="background-color:transparent">
+                                    <div class="form-left-spacing" id="formTargetDiv3">
+                                        <form id="formCompanies" name="formCompanies" role="form" data-toggle="validator"
+                                              method="post" class="form-inline bs-component">
+                                            <div class="row">
+                                                <div id="conSelAll" class="row"></div>
+                                                <div id="Companies" class="row col-lg-12"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="btn float-right form-font-size-sm-a">
+                                                    <button type="button" class="btn btn-info btn-sm save" id="btnSaveCompany"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" role="tabpanel" id="cuentas">
+                    <div id="infoAccount" class="form-font-size-sm" style="display:block;color: black;">
+                        <div class="card">
+                            <div class="card-header">
+                                <b> </b>
+                                <span class="glyphicon glyphicon-eye-open " data-toggle="collapse"
+                                      data-target="#formTargetDiv4" style="float:right"></span>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-lg-12" style="background-color:transparent">
+                                    <div class="form-left-spacing" id="formTargetDiv4">
+                                        <form id="formAccounts" name="formAccounts" role="form" data-toggle="validator"
+                                              method="post" class="form-inline bs-component">
+                                            <div class="row">
+                                                <div id="accSelAll" class="row"></div>
+                                                <div id="Accounts" class="row col-lg-12">
+                                                    <div id="par" class="par col-6"></div>
+                                                    <div id="impar" class="impar col-6"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="btn float-right form-font-size-sm-a">
+                                                    <button type="button" class="btn btn-info btn-sm save" id="btnSaveAccount"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" role="tabpanel" id="permisos">
+                    <div id="infoPermissions" class="form-font-size-sm" style="display:block;color: black;">
+                        <div class="card">
+                            <div class="card-header">
+                                <b> </b>
+                                <span class="glyphicon glyphicon-eye-open " data-toggle="collapse"
+                                      data-target="#formTargetDiv5" style="float:right"></span>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-lg-6" style="background-color:transparent">
+                                    <div class="form-left-spacing" id="formTargetDiv5">
+                                        <form id="formPermissions" name="formPermissions" role="form" data-toggle="validator"
+                                              method="post" class="form-inline bs-component">
+                                            <div class="row col-lg-7" id="page-wrap" name="page-wrap"></div>
+                                            <div class="row col-lg-4">
+                                                <div class="btn float-right form-font-size-sm-a">
+                                                    <button type="button" class="btn btn-info btn-sm save" id="btnSavePermissions"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Button actions -->
+        <div id="btnActions" class="btn float-right form-font-size-sm-a" style="display:block;">
+            <button class="btn btn-secondary btn_backUser btn-sm form-font-size-sm-a"><span class="glyphicon glyphicon-chevron-left"></span> Atras</button>
+            <!--
+            <button type="button" class="btn btn-success btn-sm reload" disabled="disabled"
+            onclick="reload()"><span class="glyphicon glyphicon-refresh"></span> Recargar </button> -->
+            <button type="button" class="btn btn-info btn-sm save" id="btnSaveGeneral"
+                    onclick="">
+                <span class="glyphicon glyphicon-floppy-disk"></span> Guardar
+            </button>
+            <!--
+            <button type="button" class="btn btn-success print slide_open" disabled="disabled"><span class="glyphicon glyphicon-print"></span> Print </button> -->
+            <!--<a href="/documents/documentsaccmain" class="btn btn-success btn-sm
+            form-font-size-sm-a"><span class="glyphicon glyphicon-plus"></span> Nuevo </a> -->
+        </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/user")
+        @Scripts.Render("~/bundles/bootstrap")
+        <link href="~/Content/treeview/css/TreeView.css" rel="stylesheet" />
+    }
+</div>
